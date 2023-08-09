@@ -274,7 +274,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editclient")) {
     $usr_password = randomPassword(8);
     $usr_password_client_id = hash('sha256', randomPassword(10));
 	
-$insertSQL = sprintf(
+    $insertSQL = sprintf(
         "INSERT INTO pel_client (client_first_name, client_mobile_number, status, client_email_address, client_parent_company, client_country, added_by, client_industry, added_date, client_last_name, client_login_username, client_company_id,client_password,client_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
         GetSQLValueString(strtoupper($_POST['client_first_name']), "text"),
         GetSQLValueString(strtoupper($_POST['client_mobile_number']), "text"),
@@ -289,11 +289,12 @@ $insertSQL = sprintf(
         GetSQLValueString($_POST['client_email_address'], "text"),
         GetSQLValueString($client_company_id, "text"),
         GetSQLValueString(md5($usr_password), "text"),
-	//GetSQLValueString($usr_password_client_id, "text"),
+	    //GetSQLValueString($usr_password_client_id, "text"),
         GetSQLValueString($account_type, "text")
     );
-//exit ();
+    //exit ();
     if ($connect->query($insertSQL)) {
+        $auth_mailer->send_mail($_POST['client_first_name'].' '.$_POST['client_last_name'], $_POST['client_email_address'], $usr_password, $account_type, $client_company_id);
         header("Location: " . $updateGoTo);
     } else {
         echo 'NOT';
