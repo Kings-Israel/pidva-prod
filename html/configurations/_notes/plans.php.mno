@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getallplans" value="name:plan_id;datatype:int,name:plan_name;datatype:string,name:plan_cost;datatype:string,name:plan_status;datatype:string,name:plan_added_by;datatype:string,name:plan_added_date;datatype:string,name:plan_data;datatype:string,name:plan_verified_by;datatype:string,name:plan_verified_date;datatype:string,name:module_id;datatype:string,name:plan_currency;datatype:string" />
+	<infoitem key="UD_getmodules" value="name:module_id;datatype:int,name:module_name;datatype:string,name:module_status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_getcurrency" value="name:currency_id;datatype:int,name:currency_name;datatype:string,name:currency_code;datatype:string,name:currency_status;datatype:string" />
+	<infoitem key="UD_getmodulesmenu" value="name:module_id;datatype:int,name:module_name;datatype:string,name:module_status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_getmodulesmenumenu" value="name:module_id;datatype:int,name:module_name;datatype:string,name:module_status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_newclients" value="name:COUNT(client_id);datatype:int" />
+	<infoitem key="UD_countnewpayments" value="name:COUNT(payment_id);datatype:int" />
+</info>

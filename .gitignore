@@ -1,0 +1,9 @@
+*.log
+app/logs/*
+/nbproject/private/
+vendor/*
+temp/*
+.idea
+html/searches/photos/*
+html/searches/reportfiles/*
+html/searches/*.png

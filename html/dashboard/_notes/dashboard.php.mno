@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_newclients" value="name:COUNT(client_id);datatype:int" />
+	<infoitem key="UD_countnewpayments" value="name:COUNT(payment_id);datatype:int" />
+	<infoitem key="UD_get5topinstitutions" value="name:COUNT_INSTITUTION;datatype:int,name:TOTAL_PER;datatype:real,name:institution_name;datatype:string" />
+	<infoitem key="UD_get5topclients" value="name:COUNT_CLIENT;datatype:int,name:TOTAL_PER;datatype:real,name:client_name;datatype:string" />
+	<infoitem key="UD_countclients" value="name:COUNT_CLIENTS;datatype:int" />
+	<infoitem key="UD_getinstitutions_count" value="name:COUNT_INSTITUTIONS;datatype:int" />
+	<infoitem key="UD_countclients2" value="name:COUNT_CLIENTS2;datatype:int" />
+</info>

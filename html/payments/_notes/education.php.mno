@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getallsearches" value="name:search_id;datatype:int,name:search_plan;datatype:string,name:search_student_id;datatype:string,name:search_bulk_id;datatype:string,name:search_ref_number;datatype:string,name:search_status;datatype:string,name:search_payment_ref;datatype:string,name:client_id;datatype:string,name:search_date;datatype:string,name:institution_id;datatype:string,name:search_country;datatype:string,name:search_terms;datatype:string,name:search_credit_charged;datatype:string,name:module_id;datatype:string,name:institution_name;datatype:string,name:client_name;datatype:string" />
+	<infoitem key="UD_getallpayments" value="name:payment_id;datatype:int,name:payment_plan;datatype:string,name:payment_ref;datatype:string,name:plan_id;datatype:string,name:plan_volume;datatype:string,name:plan_discount;datatype:string,name:payment_date;datatype:string,name:client_id;datatype:string,name:payment_status;datatype:string,name:module_id;datatype:string,name:pay_source;datatype:string,name:status;datatype:string,name:amount;datatype:string,name:currency;datatype:string" />
+</info>

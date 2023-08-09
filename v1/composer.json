@@ -1,0 +1,7 @@
+{
+    "require": {
+        "monolog/monolog": "^1.22",
+        "nesbot/carbon": "^1.22",
+        "swiftmailer/swiftmailer": "^5.4"
+    }
+}

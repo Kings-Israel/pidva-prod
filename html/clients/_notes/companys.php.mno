@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getallinst" value="name:inst_id;datatype:int,name:inst_name;datatype:string,name:inst_registration_number;datatype:string,name:status;datatype:string,name:inst_registered_date;datatype:string,name:inst_mobile_number;datatype:string,name:inst_bio;datatype:string,name:inst_logo;datatype:string,name:inst_country;datatype:string,name:added_by;datatype:string,name:verified_by;datatype:string,name:inst_campus;datatype:string,name:added_date;datatype:string,name:verified_date;datatype:string,name:inst_code;datatype:string,name:inst_email_address;datatype:string,name:inst_town;datatype:string" />
+	<infoitem key="UD_getcourses" value="name:course_id;datatype:int,name:course_name;datatype:string,name:course_code;datatype:string,name:status;datatype:string,name:added_by;datatype:string,name:verified_by;datatype:string,name:faculty_id;datatype:string,name:faculty_name;datatype:string,name:added_date;datatype:string,name:verified_date;datatype:string" />
+	<infoitem key="UD_getallcompanys" value="name:company_id;datatype:int,name:company_name;datatype:string,name:company_email_address;datatype:string,name:company_mobile_number;datatype:string,name:status;datatype:string,name:added_date;datatype:string,name:company_country;datatype:string,name:added_by;datatype:string,name:verified_by;datatype:string,name:company_industry;datatype:string,name:verified_date;datatype:string,name:company_logo;datatype:string,name:company_code;datatype:string" />
+	<infoitem key="UD_newclients" value="name:COUNT(client_id);datatype:int" />
+	<infoitem key="UD_countnewpayments" value="name:COUNT(payment_id);datatype:int" />
+</info>

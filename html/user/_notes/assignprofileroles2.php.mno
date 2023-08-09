@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getoneprofile" value="name:profile_id;datatype:int,name:profile_name;datatype:string,name:status;datatype:string,name:added_by;datatype:string,name:added_date;datatype:string,name:verified_by;datatype:string,name:verified_date;datatype:string" />
+</info>

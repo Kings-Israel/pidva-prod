@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:payment_id;datatype:int,name:payment_plan;datatype:string,name:payment_ref;datatype:string,name:plan_id;datatype:string,name:plan_volume;datatype:string,name:plan_discount;datatype:string,name:payment_date;datatype:string,name:client_id;datatype:string,name:payment_status;datatype:string,name:module_id;datatype:string,name:pay_source;datatype:string,name:status;datatype:string,name:amount;datatype:string,name:currency;datatype:string,name:client_name;datatype:string,name:source_ref;datatype:string,name:plan_amount;datatype:string" />
+</info>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getmmodulesmenu1" value="name:module_id;datatype:int,name:module_name;datatype:string,name:module_status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_getmodulesmenu" value="name:module_id;datatype:int,name:module_name;datatype:string,name:module_status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_newclients" value="name:COUNT(client_id);datatype:int" />
+	<infoitem key="UD_countnewpayments" value="name:COUNT(payment_id);datatype:int" />
+	<infoitem key="UD_getuserprofile" value="name:USR_ID;datatype:int,name:USR_BILLER_ID;datatype:int,name:USR_CREATED_BY;datatype:string,name:USR_DATE_CREATED;datatype:string,name:USR_DATE_MODIFIED;datatype:string,name:USR_EMAIL;datatype:string,name:USR_LAST_PASSWORD_CHANGE;datatype:string,name:USR_MODIFIED_BY;datatype:string,name:USR_NAME;datatype:string,name:USR_PASSWORD;datatype:string,name:USR_PHONE_NO;datatype:string,name:USR_RETRIES;datatype:string,name:USR_STAFF_ID;datatype:string,name:USR_STATUS;datatype:string,name:USR_USERNAME;datatype:string,name:FK_INSTITUTION_ID;datatype:string,name:USR_PIN;datatype:string,name:USR_PIN_STATUS;datatype:string,name:USR_PHOTO;datatype:string,name:USR_LAST_LOGIN;datatype:string,name:USR_NATIONAL_ID;datatype:string,name:USR_PROFILE;datatype:string,name:USR_PROFILE_NAME;datatype:string" />
+</info>

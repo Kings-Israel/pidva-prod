@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getmodules" value="name:module_id;datatype:int,name:module_name;datatype:string,name:status;datatype:string,name:module_date_added;datatype:date,name:module_added_by;datatype:string,name:module_verified_by;datatype:string,name:module_code;datatype:string" />
+	<infoitem key="UD_getinst" value="name:inst_name;datatype:string" />
+	<infoitem key="UD_getinst2" value="name:inst_code;datatype:string" />
+</info>

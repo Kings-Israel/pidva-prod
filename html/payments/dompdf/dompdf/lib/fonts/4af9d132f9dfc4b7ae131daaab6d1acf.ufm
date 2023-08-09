@@ -1,0 +1,29 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+FontName datedropper
+FontSubfamily Regular
+UniqueID FontForge 2.0 : datedropper : 26-11-2016
+FullName datedropper
+Version Version 1.0
+PostScriptName datedropper
+Weight Medium
+ItalicAngle 0
+IsFixedPitch true
+UnderlineThickness 0
+UnderlinePosition 0
+FontHeightOffset 90
+Ascender 1000
+Descender 0
+FontBBox 0 0 1000 1000
+StartCharMetrics 10
+U 97 ; WX 1000 ; N min ; G 8
+U 98 ; WX 1000 ; N lkd ; G 4
+U 99 ; WX 1000 ; N exp ; G 9
+U 101 ; WX 1000 ; N ckd ; G 5
+U 102 ; WX 1000 ; N r ; G 6
+U 104 ; WX 1000 ; N l ; G 7
+U 106 ; WX 1000 ; N lng ; G 3
+EndCharMetrics
+EndFontMetrics

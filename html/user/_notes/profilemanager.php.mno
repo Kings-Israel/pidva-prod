@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getallinst" value="name:profile_id;datatype:int,name:profile_name;datatype:string,name:status;datatype:string,name:added_by;datatype:string,name:added_date;datatype:string,name:verified_by;datatype:string,name:verified_date;datatype:string" />
+	<infoitem key="UD_getcourses" value="name:course_id;datatype:int,name:course_name;datatype:string,name:course_code;datatype:string,name:status;datatype:string,name:added_by;datatype:string,name:verified_by;datatype:string,name:faculty_id;datatype:string,name:faculty_name;datatype:string,name:added_date;datatype:string,name:verified_date;datatype:string" />
+	<infoitem key="UD_getallplans" value="name:plan_id;datatype:int,name:plan_name;datatype:string,name:plan_cost;datatype:string,name:plan_status;datatype:string,name:plan_added_by;datatype:string,name:plan_added_date;datatype:string,name:plan_data;datatype:string,name:plan_verified_by;datatype:string,name:plan_verified_date;datatype:string,name:module_id;datatype:string,name:plan_currency;datatype:string,name:plan_min;datatype:string,name:plan_max;datatype:string,name:plan_credits;datatype:string" />
+	<infoitem key="UD_getallprofiles" value="name:profile_id;datatype:int,name:profile_name;datatype:string,name:status;datatype:string,name:added_by;datatype:string,name:added_date;datatype:string,name:verified_by;datatype:string,name:verified_date;datatype:string" />
+</info>

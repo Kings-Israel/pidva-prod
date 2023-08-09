@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_newclients" value="name:COUNT(client_id);datatype:int" />
+	<infoitem key="UD_countnewpayments" value="name:COUNT(payment_id);datatype:int" />
+	<infoitem key="UD_roles" value="name:pr_id;datatype:int,name:profile_id;datatype:string,name:role_id;datatype:string,name:role_code;datatype:string,name:role_name;datatype:string,name:profile_name;datatype:string,name:role_cat;datatype:string" />
+</info>

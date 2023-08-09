@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getfaulty" value="name:faculty_id;datatype:int,name:faculty_name;datatype:string" />
+</info>
