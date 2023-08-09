@@ -25,7 +25,7 @@ class AuthMailer
          
         $link = 'https://idcheck.africa/';
         if($account_type == 'psmt') {
-            $link = 'https://kyc.pidva.africa/';
+            $link = 'https://psmt.pidva.africa/';
         }
         if($account_type == 'kyc') {
             $link = 'https://kyc.pidva.africa/';
@@ -108,7 +108,7 @@ class AuthMailer
                                                     </tr>
                                                     <tr align="center">
                                                         <td class="content-block" style="vertical-align:top; padding:0 0 20px"
-                                                            valign="top"> <a href="https://kyc.pidva.africa" class="btn-primary"
+                                                            valign="top"> <a href="'.$link.'" class="btn-primary"
                                                                 style="background-color:#c2d348; border:solid #c2d348; border-radius:2px; color:#FFF; cursor:pointer; display:inline-block; font-weight:bold; line-height:2em; padding:3px 12px; text-align:center; text-decoration:none; text-transform:capitalize"
                                                                 bgcolor="#c2d348" align="center">Proceed To Login</a></td>
                                                     </tr>
