@@ -556,6 +556,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 	<link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+	<link rel="stylesheet" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 	<script src="../../assets/js/ace-extra.js"></script>
 </head>
 
@@ -1036,8 +1037,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																						</div>
 																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div> -->
-																					<textarea name="data_notes" id="editor" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
-
+																					<!-- <textarea name="data_notes" id="x" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea> -->
+																					<input id="x" type="hidden" name="data_notes" value="<?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?>" />
+    																			<trix-editor input="x"></trix-editor>
 																					<br />
 
 																					<div class="space-10"></div>
@@ -1774,12 +1776,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<script src="../../assets/js/ace/ace.widget-on-reload.js"></script>
 	<script src="../../assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
-	<script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'></script>
-    <script>
-    tinymce.init({
-			selector: "#editor"
-    });
-	</script>
+	<script type="text/javascript" src='https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js'></script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
