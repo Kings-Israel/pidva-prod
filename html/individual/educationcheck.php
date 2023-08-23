@@ -1,5 +1,5 @@
 <?php require('../../Connections/connect.php');
-ini_set('display_errors', '1');
+// ini_set('display_errors', '1');
 
 include_once('./vendor/spaces-api/spaces.php');
 
@@ -40,6 +40,7 @@ $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
 	$editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
+echo $editFormAction;
 $colname_getrequestid = "-1";
 if (isset($_GET['request_id'])) {
 	$colname_getrequestid = $_GET['request_id'];
@@ -970,7 +971,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																			<div class="table-header">
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span> </button>
-																				Fetch From Database edit <? echo $editFormAction ?>
+																				Fetch From Database <? echo $editFormAction ?>
 																			</div>
 																		</div>
 
