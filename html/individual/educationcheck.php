@@ -40,6 +40,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
 	$editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
+print $editFormAction;
+
 $colname_getrequestid = "-1";
 if (isset($_GET['request_id'])) {
 	$colname_getrequestid = $_GET['request_id'];
