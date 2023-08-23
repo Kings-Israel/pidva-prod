@@ -980,7 +980,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																		<div class="modal-body padding">
 																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
-																				<input type="text" name="<?php echo $editFormAction ?>" id="">
+																				<input type="text" name="<?php echo htmlspecialchars($editFormAction) ?>" id="">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
