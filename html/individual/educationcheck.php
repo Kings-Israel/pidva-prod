@@ -49,8 +49,6 @@ if (isset($_GET['moduleid'])) {
 	$colname_getmoduleid = $_GET['moduleid'];
 }
 
-echo $_SERVER['REQUEST_METHOD'];
-
 $errorcode = '';
 $certificate_photo_url = '';
 
