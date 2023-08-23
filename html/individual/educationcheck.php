@@ -54,8 +54,6 @@ $certificate_photo_url = '';
 
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
-
-	// 
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
 		$date_insert = date('dmYhis');
@@ -78,10 +76,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 	if (isset($_POST['student_token'])) {
 		$student_token = strtoupper($_POST['student_token']);
 
-		// mysqli_select_db($connect, $database_connect);
-
 		$datetoday = date('Y-m-d');
-		// if (isset())
 
 		$query_getstudent = "SELECT * FROM pel_edu_data WHERE student_token = '$student_token' and student_status = '11'";
 		$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
@@ -90,9 +85,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 
 		if ($totalRows_getstudent > 0) {
 			$name = $row_getstudent['student_first_name'] . " " . $row_getstudent['student_second_name'] . " " . $row_getstudent['student_third_name'];
-
+			echo $name;
 			$updateSQL = sprintf(
-				"UPDATE pel_psmt_edu_data SET edu_name=%s, edu_institution=%s, status=%s, date_added=%s, added_by=%s, edu_course=%s, edu_specialization=%s,data_source=%s, edu_award=%s, edu_graduation_year=%s, certificate_photo=%s, data_notes=%s, student_token=%s WHERE edu_id=%s",
+				"UPDATE pel_psmt_edu_data SET edu_name=%s, edu_institution=%s, status=%s, date_added=%s, added_by=%s, edu_course=%s, edu_specialization=%s, data_source=%s, edu_award=%s, edu_graduation_year=%s, certificate_photo=%s, data_notes=%s, student_token=%s WHERE edu_id=%s",
 				GetSQLValueString($name, "text"),
 				GetSQLValueString(strtoupper($row_getstudent['institution_name']), "text"),
 				GetSQLValueString($_POST['status'], "text"),
@@ -108,7 +103,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 				GetSQLValueString($student_token, "text"),
 				GetSQLValueString($_POST['edu_id'], "int")
 			);
-
 
 			$colname_getrequestid = $_POST['request_id'];
 			$colname_getmoduleid = $_POST['moduleid'];
@@ -127,7 +121,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 												Oh snap!
 											</strong>
 
-										 Details of the Student Data havent been added.
+										 Details of the Student Data haven\'t been added.
 											<br />
 										</div>';
 			} else {
@@ -165,7 +159,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editmatchdetails")) {
-
 	$updateSQL = sprintf(
 		"UPDATE pel_psmt_edu_data SET match_status_name=%s, status=%s, date_added=now(), added_by=%s, match_status_insititution=%s, match_status_course=%s,match_status_specialization=%s, match_status_award=%s, match_status_year=%s WHERE edu_id=%s",
 		GetSQLValueString(strtoupper($_POST['match_status_name']), "text"),
@@ -200,19 +193,12 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editmatchdetails"))
 											<br />
 										</div>';
 	} else {
-
 		$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-		/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
 		header(sprintf("Location: %s", $updateGoTo));
 	}
 }
 
-
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editdetails")) {
-
  $updateSQL = sprintf(
 		"UPDATE pel_psmt_edu_data SET name_provided=%s, status=%s, date_added=now(), added_by=%s, education_level=%s,institution_provided=%s, data_source_provided=%s, course_provided=%s, specialization_provided=%s,award_provided=%s, year_provided=%s, country=%s WHERE edu_id=%s",
 		GetSQLValueString(strtoupper($_POST['name_provided']), "text"),
@@ -232,8 +218,6 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editdetails")) {
 	mysqli_select_db($connect, $database_connect);
 	mysqli_query_ported($updateSQL, $connect);
 
-
-
 	$colname_getrequestid = $_POST['request_id'];
 	$colname_getmoduleid = $_POST['moduleid'];
 
@@ -252,19 +236,12 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editdetails")) {
 											<br />
 										</div>';
 	} else {
-
 		$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-		/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
 		header(sprintf("Location: %s", $updateGoTo));
 	}
 }
 
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
-
 	$insertSQL = sprintf(
 		"INSERT INTO pel_psmt_edu_data (name_provided, status, date_added, added_by, institution_provided, data_source_provided, course_provided, specialization_provided,award_provided, year_provided, country, search_id) VALUES (%s, %s, now(), %s, %s,%s, %s, %s, %s, %s, %s, %s)",
 		GetSQLValueString(strtoupper($_POST['name_provided']), "text"),
@@ -324,7 +301,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addreject")) {
 	mysqli_select_db($connect, $database_connect);
 	$Result1reject = mysqli_query_ported($deleteSQLreject, $connect) or die(mysqli_error($connect));
 
-
 	$deleteSQL3 = sprintf(
 		"UPDATE pel_psmt_request_modules SET status=%s WHERE module_id=%s AND request_ref_number=%s",
 		GetSQLValueString('00', "text"),
@@ -333,8 +309,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addreject")) {
 	);
 	mysqli_select_db($connect, $database_connect);
 	$Result3 = mysqli_query_ported($deleteSQL3, $connect) or die(mysqli_error($connect));
-
-
 	$colname_getrequestid = $_POST['request_id'];
 	$colname_getmoduleid = $_POST['moduleid'];
 
@@ -355,21 +329,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addreject")) {
 										</div>';
 	} else {
 		$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-		/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
 		header(sprintf("Location: %s", $updateGoTo));
 	}
 }
 
-
-
-
 if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	if ($_GET['status'] == '11') {
-
-
 		$deleteSQL2 = sprintf(
 			"UPDATE pel_psmt_edu_data SET status=%s, review_status=%s, verified_by=%s, verified_date=now() WHERE search_id=%s and edu_id=%s",
 			GetSQLValueString($_GET['status'], "text"),
@@ -380,8 +345,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 		);
 		mysqli_select_db($connect, $database_connect);
 		$Result2 = mysqli_query_ported($deleteSQL2, $connect) or die(mysqli_error($connect));
-
-
 
 		$deleteSQL3 = sprintf(
 			"UPDATE pel_psmt_request_modules SET status=%s WHERE module_id=%s AND request_ref_number=%s",
@@ -408,12 +371,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 										</div>';
 		} else {
 			$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-			/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
-
-
 			header(sprintf("Location: %s", $updateGoTo));
 		}
 	}
@@ -453,9 +410,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 		);
 		mysqli_select_db($connect, $database_connect);
 		$Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
-
-
-
 		if (mysqli_error($connect)) {
 			$errorcode = '<div class="alert alert-danger">
 											<button type="button" class="close" data-dismiss="alert">
@@ -506,79 +460,77 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 			header(sprintf("Location: %s", $updateGoTo));
 		}
 	}
-} elseif ((isset($_GET['edu_id'])) && ($_GET['edu_id'] != "")) {
-	if ($_GET['status'] == '00') {
-		$deleteSQL = sprintf(
-			"UPDATE pel_psmt_edu_data SET status=%s, added_by=%s, date_added=now() WHERE edu_id=%s",
-			GetSQLValueString($_GET['status'], "text"),
-			GetSQLValueString($_GET['fullnames'], "text"),
-			GetSQLValueString($_GET['edu_id'], "int")
-		);
-		mysqli_select_db($connect, $database_connect);
-		$Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
+	} elseif ((isset($_GET['edu_id'])) && ($_GET['edu_id'] != "")) {
+		if ($_GET['status'] == '00') {
+			$deleteSQL = sprintf(
+				"UPDATE pel_psmt_edu_data SET status=%s, added_by=%s, date_added=now() WHERE edu_id=%s",
+				GetSQLValueString($_GET['status'], "text"),
+				GetSQLValueString($_GET['fullnames'], "text"),
+				GetSQLValueString($_GET['edu_id'], "int")
+			);
+			mysqli_select_db($connect, $database_connect);
+			$Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
 
-		if (mysqli_error($connect)) {
-			$errorcode = '<div class="alert alert-danger">
-											<button type="button" class="close" data-dismiss="alert">
-												<i class="ace-icon fa fa-times"></i>
-											</button>
+			if (mysqli_error($connect)) {
+				$errorcode = '<div class="alert alert-danger">
+												<button type="button" class="close" data-dismiss="alert">
+													<i class="ace-icon fa fa-times"></i>
+												</button>
 
-											<strong>
-												<i class="ace-icon fa fa-times"></i>
-												Oh snap!
-											</strong>
+												<strong>
+													<i class="ace-icon fa fa-times"></i>
+													Oh snap!
+												</strong>
 
-										 Details of the comments have not been updated.
-											<br />
-										</div>';
-		} else {
-			$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-			/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
-			header(sprintf("Location: %s", $updateGoTo));
+											Details of the comments have not been updated.
+												<br />
+											</div>';
+			} else {
+				$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
+				/* if (isset($_SERVER['QUERY_STRING'])) {
+			$updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+			$updateGoTo .= $_SERVER['QUERY_STRING'];
+		}*/
+				header(sprintf("Location: %s", $updateGoTo));
+			}
 		}
-	}
 
-	if ($_GET['status'] == '22') {
-		$deleteSQL = sprintf(
-			"UPDATE pel_psmt_edu_data SET status=%s, added_by=%s, date_added=now() WHERE edu_id=%s",
-			GetSQLValueString($_GET['status'], "text"),
-			GetSQLValueString($_GET['fullnames'], "text"),
-			GetSQLValueString($_GET['edu_id'], "int")
-		);
-		mysqli_select_db($connect, $database_connect);
-		$Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
+		if ($_GET['status'] == '22') {
+			$deleteSQL = sprintf(
+				"UPDATE pel_psmt_edu_data SET status=%s, added_by=%s, date_added=now() WHERE edu_id=%s",
+				GetSQLValueString($_GET['status'], "text"),
+				GetSQLValueString($_GET['fullnames'], "text"),
+				GetSQLValueString($_GET['edu_id'], "int")
+			);
+			mysqli_select_db($connect, $database_connect);
+			$Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
 
-		if (mysqli_error($connect)) {
-			$errorcode = '<div class="alert alert-danger">
-											<button type="button" class="close" data-dismiss="alert">
-												<i class="ace-icon fa fa-times"></i>
-											</button>
+			if (mysqli_error($connect)) {
+				$errorcode = '<div class="alert alert-danger">
+												<button type="button" class="close" data-dismiss="alert">
+													<i class="ace-icon fa fa-times"></i>
+												</button>
 
-											<strong>
-												<i class="ace-icon fa fa-times"></i>
-												Oh snap!
-											</strong>
+												<strong>
+													<i class="ace-icon fa fa-times"></i>
+													Oh snap!
+												</strong>
 
-										 Details of the data notes havenot been blocked
-											<br />
-										</div>';
-		} else {
-			$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
-			/* if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }*/
-			header(sprintf("Location: %s", $updateGoTo));
+											Details of the data notes havenot been blocked
+												<br />
+											</div>';
+			} else {
+				$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
+				/* if (isset($_SERVER['QUERY_STRING'])) {
+			$updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+			$updateGoTo .= $_SERVER['QUERY_STRING'];
+		}*/
+				header(sprintf("Location: %s", $updateGoTo));
+			}
 		}
+	} else {
+		// echo 'none';
 	}
-} else {
-	// echo 'none';
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -607,7 +559,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 	<link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 	<script src="../../assets/js/ace-extra.js"></script>
-
 </head>
 
 <body class="no-skin">
@@ -638,7 +589,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 			</script>
 			<?php include('../sidebarmenu2.php'); ?>
 
-
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 				<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 			</div>
@@ -648,7 +598,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 					ace.settings.check('sidebar', 'collapsed')
 				} catch (e) {}
 			</script>
-
 		</div>
 
 		<!-- /section:basics/sidebar -->
@@ -681,7 +630,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 					<div class="nav-search" id="nav-search">
 					</div>
-
 				</div>
 
 				<div class="page-content">
@@ -689,8 +637,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 						<div class="col-xs-12">
 							<div class="row">
 								<div class="col-xs-12">
-
-
 									<h3 align="left" class="header smaller lighter blue">Add Individual Education Details</h3>
 								</div>
 
@@ -699,9 +645,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 								$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
 								$row_getstudent = mysqli_fetch_assoc($getstudent);
 								$totalRows_getstudent = mysqli_num_rows($getstudent);
-
-								// 
-
 								?>
 
 								<h3 align="left" class=" smaller lighter blue"><strong>SEARCH REF: </strong> <?php echo $row_getstudent['request_ref_number']; ?></h3>
@@ -761,17 +704,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																		}
 													?>
 												</td>
-
-
-
 											</tr>
-
-
-
 										</tbody>
 									</table>
-
-
 									<a href="individualdataentry.php?request_id=<?php echo $row_getstudent['request_id']; ?>" role="button" class="green">
 										<button class="btn btn-xs btn-primary">
 											<i class="ace-icon smaller-80 green"></i>Go Back
@@ -785,39 +720,29 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 									</div>
 
 									<?php
-
 									$search_ref = $row_getstudent['request_ref_number'];
 									$query_getdetails = "SELECT * FROM pel_psmt_edu_data WHERE search_id = '" . $search_ref . "' order by edu_graduation_year ASC";
 									$getdetails  = mysqli_query_ported($query_getdetails, $connect) or die(mysqli_error($connect));
-
 									?>
-
-
-
 									<div class="col-lg-12" align="center">
 										<h3 align="left" class=" smaller lighter blue"><strong>EDUCATION CHECK DETAILS: </strong>
 										</h3>
-
 										<?php
-										while ($row_getdetails = mysqli_fetch_assoc($getdetails)) {
-											$student_token = $row_getdetails['student_token'];
-											$edu_id = $row_getdetails['edu_id'];
-											$certificate_photo_url = $row_getdetails['certificate_photo'];
-											$certificate_photo = $row_getdetails['certificate_photo'];
-											$verification_status = $row_getdetails['verification_status'];
-											$is_negative = 'default';
-											if ($verification_status == '-1' || $verification_status == -1) {
-												$is_negative = 'negative';
-											} elseif ($verification_status == '-2' || $verification_status == -2) {
-												$is_negative = 'ongoing';
-											}
-										?>
-
-
+											while ($row_getdetails = mysqli_fetch_assoc($getdetails)) {
+												$student_token = $row_getdetails['student_token'];
+												$edu_id = $row_getdetails['edu_id'];
+												$certificate_photo_url = $row_getdetails['certificate_photo'];
+												$certificate_photo = $row_getdetails['certificate_photo'];
+												$verification_status = $row_getdetails['verification_status'];
+												$is_negative = 'default';
+												if ($verification_status == '-1' || $verification_status == -1) {
+													$is_negative = 'negative';
+												} elseif ($verification_status == '-2' || $verification_status == -2) {
+													$is_negative = 'ongoing';
+												}
+											?>
 											<h2 align="left" class=" smaller lighter blue"><strong>COURSE NAME: </strong> <?php echo $row_getdetails['edu_course']; ?>
 											</h2>
-
-
 											<table id="simple-table" class="table table-bordered table-hoverx <?php echo $is_negative; ?>
 											">
 												<thead>
@@ -1028,21 +953,21 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															</div><!-- PAGE CONTENT ENDS -->
 														</td>
 														<td><strong>Data Collected</strong> &nbsp;&nbsp; <?php
-																											if ($row_getdetails['status'] == '11' || $row_getdetails['status'] == '22') {
-																											?>
-																<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=00&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-danger">
+																if ($row_getdetails['status'] == '11' || $row_getdetails['status'] == '22') {
+																	?>
+																	<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=00&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-danger">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i> </button></a> <?php
-																																	}
-																																	if ($row_getdetails['status'] == '00') {
-
-																																		?>
-																<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=22&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-success">
+																}
+																if ($row_getdetails['status'] == '00') {
+																	?>
+																	<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=22&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-success">
 																		<i class="ace-icon fa fa-check bigger-120"></i> </button></a>
-															<?php
-																																	}
+																	<?php
+																}
 															?><i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i><a href="#modal-checkindb-<?php echo $edu_id ?>" role="button" class="green" data-toggle="modal">
 																<button class="btn btn-xs btn-success">
-																	<i class="ace-icon smaller-80 green"></i>Update Data </button></a>
+																	<i class="ace-icon smaller-80 green"></i>Update Data
+																</button></a>
 
 															<!-- HERE IS WHERE I WANT -->
 															<div id="modal-checkindb-<?php echo $edu_id ?>" class="modal fade" tabindex="-1">
@@ -1062,29 +987,21 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
 																				<input type="hidden" id="search_id" name="search_id" value="<?php echo $search_ref; ?>" />
 																				<input type="hidden" id="edu_id" name="edu_id" value="<?php echo $row_getdetails['edu_id']; ?>" />
-
-
 																				<input type="hidden" id="status" name="status" value="44" />
 																				<input type="hidden" id="added_by" name="added_by" value="<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>" />
 																				<input type="hidden" id="date_added" name="date_added" value="<?php echo date('Y-m-d H:m:s'); ?>" />
 
 																				<div class="space-10"></div>
 
-
 																				<?php if ($is_negative == 'default') { ?>
 																					<label class="col-sm-4">Enter Student Token</label>
-
 																					<div class="col-sm-8"><input type="text" class="form-control" id="student_token" name="student_token" class="form-control" required value="<?php echo $student_token; ?>" />
 																					</div>
 																					<br />
 																				<?php } ?>
-
-
-
 																				<div class="space-10"></div>
 
 																				<label class="col-sm-4">Upload Certificate</label>
-
 
 																				<div class="col-sm-8">
 																					<input class="form-control" id="certificate_photo" name="certificate_photo" type="file" />
@@ -1119,14 +1036,12 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																						</div>
 																						<div id="editor" contenteditable>
 																						</div>
-																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?>
-																					</textarea>
+																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div>
 
 																					<br />
 
 																					<div class="space-10"></div>
-
 
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
@@ -1135,29 +1050,24 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																								<i class="ace-icon fa fa-check bigger-110"></i>
 																								Save
 																							</button>
-
 																							   
 																							<button class="btn" type="reset">
 																								<i class="ace-icon fa fa-undo bigger-110"></i>
-																								Reset </button>
+																								Reset
+																							</button>
 																						</div>
 																					</div>
-
 																					<input type="hidden" name="MM_insert" value="checkindb">
-
 																			</form>
-
 																		</div>
 																		<div class="modal-footer no-margin-top">
 																			<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 																				<i class="ace-icon fa fa-times"></i>
-																				Close </button>
-
-
+																				Close
+																			</button>
 																		</div>
 																	</div>
 																</div>
-
 															</div><!-- PAGE CONTENT ENDS -->
 														</td>
 
@@ -1612,7 +1522,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 														<div class="col-sm-12">
 															<div class="widget-box widget-color-green">
 																<div class="widget-header widget-header-small"> </div>
-
 																<div class="widget-body">
 																	<div class="widget-main no-padding">
 																		<textarea name="review_notes" data-provide="markdown" data-iconlibrary="fa" rows="10"></textarea>
@@ -1621,8 +1530,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															</div>
 														</div> <br />
 														<div class="space-10"></div>
-
-
 														<div class="clearfix form-actions">
 															<div class="col-md-offset-3 col-md-9">
 																<button onClick="submit" type="submit" value="submit" type="button" class="btn btn-info">
@@ -1630,48 +1537,35 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																	<i class="ace-icon fa fa-check bigger-110"></i>
 																	Save
 																</button>
-
 																   
 																<button class="btn" type="reset">
 																	<i class="ace-icon fa fa-undo bigger-110"></i>
 																	Reset </button>
 															</div>
 														</div>
-
 														<input type="hidden" name="MM_insert" value="addreject">
-
 													</form>
-
 												</div>
 												<div class="modal-footer no-margin-top">
 													<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 														<i class="ace-icon fa fa-times"></i>
 														Close </button>
-
-
 												</div>
 											</div>
 										</div>
-
 									</div><!-- PAGE CONTENT ENDS -->
 								<?php
-
 										}
 										while ($row_getdetails = mysqli_fetch_assoc($getdetails));
 								?>
 								<hr />
-
-
-
-
 								<div>
-
-									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i><a href="#modal-adddetails-<?php echo $row_getdetails['edu_id']; ?>" role="button" class="green" data-toggle="modal">
+									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+									<a href="#modal-adddetails-<?php echo $row_getdetails['edu_id']; ?>" role="button" class="green" data-toggle="modal">
 										<button class="btn btn-xs btn-primary">
 											<i class="ace-icon smaller-80 green"></i>Add Raw Given Data
-										</button></a>
-
-
+										</button>
+									</a>
 									<div id="modal-adddetails-<?php echo $row_getdetails['edu_id']; ?>" class="modal fade" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -1682,16 +1576,11 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 														Add Details
 													</div>
 												</div>
-
-
-
 												<div class="modal-body padding">
 													<form enctype="multipart/form-data" method="POST" action="<?php echo $editFormAction; ?>" class="form-horizontal" name="newdetails">
 														<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 														<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
 														<input type="hidden" id="search_id" name="search_id" value="<?php echo $search_ref; ?>" />
-
-
 														<input type="hidden" id="status" name="status" value="33" />
 														<input type="hidden" id="added_by" name="added_by" value="<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>" />
 														<input type="hidden" id="date_added" name="date_added" value="<?php echo date('Y-m-d H:m:s'); ?>" />
@@ -1761,7 +1650,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 														<br />
 														<div class="space-10"></div>
 
-
 														<label class="col-sm-4">Institution Country</label>
 
 														<div class="col-sm-7"><span id="spryselect1">
@@ -1770,16 +1658,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																	<option value="<?php echo $row_getdetails['country']; ?>"><?php echo $row_getdetails['country']; ?></option>
 																	<option value="000"></option>
 																	<?php
-
-
-
 																	$query_getcountries2 = "SELECT * FROM pel_countries ORDER BY country_name ASC";
 																	$getcountries2 = mysqli_query_ported($query_getcountries2, $connect) or die(mysqli_error($connect));
 																	$row_getcountries2 = mysqli_fetch_assoc($getcountries2);
 																	$totalRows_getcountries2 = mysqli_num_rows($getcountries2);
-
-
-
 																	do { ?>
 																		<option value="<?php echo $row_getcountries2['country_name']; ?>"><?php echo $row_getcountries2['country_name']; ?></option>
 																	<?php } while ($row_getcountries2 = mysqli_fetch_assoc($getcountries2)); ?>

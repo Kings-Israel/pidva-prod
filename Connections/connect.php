@@ -16,7 +16,6 @@ $connect = mysqli_connect($hostname_connect, $username_connect, $password_connec
 if ($GLOBALS['connect']) {
     $connect = $GLOBALS['connect'];
 } else {
-
     $host = gethostname();
     header("Location: error/");
 }
