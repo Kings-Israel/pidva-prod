@@ -35,7 +35,6 @@ if (!function_exists("GetSQLValueString")) {
 	}
 }
 
-
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
 	$editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
@@ -54,7 +53,7 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 if (isset($_POST['test'])) {
-	echo $_POST["MM-insert"] === "checkindb" ? "true" : "false";
+	echo $_POST["test"] === "checkindb" ? "true" : "false";
 }
 
 if ((isset($_POST["MM-insert"])) && ($_POST["MM-insert"] === "checkindb")) {
