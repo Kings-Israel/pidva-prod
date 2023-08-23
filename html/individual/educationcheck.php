@@ -1,5 +1,5 @@
 <?php require('../../Connections/connect.php');
-// ini_set('display_errors', '1');
+ini_set('display_errors', '1');
 
 include_once('./vendor/spaces-api/spaces.php');
 
