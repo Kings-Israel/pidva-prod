@@ -53,8 +53,11 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
+if (isset($_POST['MM_insert'])) {
+	echo $_POST['MM_insert'];
+}
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
-	print $_POST["MM_insert"];
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
 		$date_insert = date('dmYhis');
@@ -571,7 +574,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 		</script>
 		<?php include('../header2.php'); ?>
 	</div>
-
 	<!-- /section:basics/navbar.layout -->
 	<div class="main-container" id="main-container">
 		<script type="text/javascript">
@@ -579,7 +581,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 				ace.settings.check('main-container', 'fixed')
 			} catch (e) {}
 		</script>
-
 		<!-- #section:basics/sidebar -->
 		<div id="sidebar" class="sidebar responsive">
 			<script type="text/javascript">
@@ -599,7 +600,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 				} catch (e) {}
 			</script>
 		</div>
-
 		<!-- /section:basics/sidebar -->
 		<div class="main-content">
 			<div class="main-content-inner">
@@ -631,7 +631,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 					<div class="nav-search" id="nav-search">
 					</div>
 				</div>
-
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
@@ -1043,7 +1042,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							<button onClick="submit" type="submit" value="submit" type="button" class="btn btn-info">
 																								<!--<button onClick="submit" class="btn btn-info" type="button">-->
 																								<i class="ace-icon fa fa-check bigger-110"></i>
-																								Submit
+																								Save
 																							</button>
 																							   
 																							<button class="btn" type="reset">
