@@ -974,7 +974,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span>
 																				</button>
-																				Fetch From Database <? echo $_SERVER['SERVER_NAME'] ?>
+																				Fetch From Database
 																			</div>
 																		</div>
 
@@ -1775,11 +1775,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-		$('#updateform').submit(function(e) {
-			e.preventDefault()
-			console.log('Form submitted')
-		})
 		jQuery(document).ready(function($) {
+			console.log($('#updateform'))
+
 			/** ******************************
 			 * Simple WYSIWYG
 			 ****************************** **/
