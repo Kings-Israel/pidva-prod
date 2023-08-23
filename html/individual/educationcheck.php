@@ -51,7 +51,7 @@ if (isset($_GET['moduleid'])) {
 
 $errorcode = '';
 $certificate_photo_url = '';
-echo $_SERVER['REQUEST_METHOD'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo 'Form posted';
 }
