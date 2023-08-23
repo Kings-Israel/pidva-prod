@@ -1036,7 +1036,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																						</div>
 																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div> -->
-																					<textarea name="data_notes" id="editor" rows="20" cols="130" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
+																					<textarea name="data_notes" id="editor" rows="10" cols="130" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					<br />
 
 																					<div class="space-10"></div>
