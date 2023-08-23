@@ -970,7 +970,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																			<div class="table-header">
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span> </button>
-																				Fetch From Database <? echo $editFormAction ?>
+																				Fetch From Database edit <? echo $editFormAction ?>
 																			</div>
 																		</div>
 
