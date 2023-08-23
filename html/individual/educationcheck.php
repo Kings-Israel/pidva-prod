@@ -54,6 +54,7 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
+	print $_POST["MM_insert"];
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
 		$date_insert = date('dmYhis');
@@ -83,7 +84,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 		$row_getstudent = mysqli_fetch_assoc($getstudent);
 		$totalRows_getstudent = mysqli_num_rows($getstudent);
 
-		echo $_POST['student_token'];
 		if ($totalRows_getstudent > 0) {
 			$name = $row_getstudent['student_first_name'] . " " . $row_getstudent['student_second_name'] . " " . $row_getstudent['student_third_name'];
 			$updateSQL = sprintf(
@@ -971,12 +971,12 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																			<div class="table-header">
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span> </button>
-																				Fetch From Database <? echo $editFormAction ?>
+																				Fetch From Database
 																			</div>
 																		</div>
 
 																		<div class="modal-body padding">
-																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal" name="checkindb">
+																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
@@ -1043,7 +1043,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							<button onClick="submit" type="submit" value="submit" type="button" class="btn btn-info">
 																								<!--<button onClick="submit" class="btn btn-info" type="button">-->
 																								<i class="ace-icon fa fa-check bigger-110"></i>
-																								Save
+																								Submit
 																							</button>
 																							   
 																							<button class="btn" type="reset">
@@ -1069,13 +1069,15 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															<td><strong>Match Status</strong> &nbsp;&nbsp;
 																<?php
 																if ($row_getdetails['status'] == '11' || $row_getdetails['status'] == '22' || $row_getdetails['status'] == '44') {
-																?>
+																	?>
 																	<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i><a href="#modal-editmatch-<?php echo $row_getdetails['edu_id']; ?>" role="button" class="green" data-toggle="modal">
 																		<button class="btn btn-xs btn-info">
-																			<i class="ace-icon fa fa-pencil bigger-120"></i> </button></a> <?php
-																																		}
-																																			?>
-
+																			<i class="ace-icon fa fa-pencil bigger-120"></i>
+																		</button>
+																	</a>
+																	<?php
+																}
+																?>
 																<div id="modal-editmatch-<?php echo $row_getdetails['edu_id']; ?>" class="modal fade" tabindex="-1">
 																	<div class="modal-dialog">
 																		<div class="modal-content">
@@ -1124,7 +1126,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							</td>
 																						</tr>
 
-
 																						<tr>
 																							<th>Institution</th>
 																							<td><?php echo $row_getdetails['institution_provided']; ?></td>
@@ -1142,7 +1143,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							</td>
 																						</tr>
 
-
 																						<tr>
 																							<th>Course</th>
 																							<td><?php echo $row_getdetails['course_provided']; ?></td>
@@ -1159,7 +1159,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																								</select>
 																							</td>
 																						</tr>
-
 
 																						<tr>
 																							<th>Specialization</th>
@@ -1211,15 +1210,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																								</select>
 																							</td>
 																						</tr>
-
 																					</table>
-
-
-
 																					<br />
 																					<div class="space-10"></div>
-
-
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
 																							<button onClick="submit" type="submit" value="submit" type="button" class="btn btn-info">
@@ -1227,42 +1220,33 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																								<i class="ace-icon fa fa-check bigger-110"></i>
 																								Save
 																							</button>
-
 																							   
 																							<button class="btn" type="reset">
 																								<i class="ace-icon fa fa-undo bigger-110"></i>
 																								Reset </button>
 																						</div>
 																					</div>
-
 																					<input type="hidden" name="MM_update" value="editmatchdetails">
-
 																				</form>
-
 																			</div>
 																			<div class="modal-footer no-margin-top">
 																				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 																					<i class="ace-icon fa fa-times"></i>
 																					Close </button>
-
-
 																			</div>
 																		</div>
 																	</div>
-
 																</div><!-- PAGE CONTENT ENDS -->
 															</td>
 														<?php } ?>
 													</tr>
 												</thead>
-
 												<tr>
 													<td><strong>Name:</strong></td>
 													<td>
 														<a href="#"><?php echo $row_getdetails['name_provided']; ?> </a>
 													</td>
 													<?php if ($is_negative == 'default') { ?>
-
 														<td>
 															<a href="#"><?php echo $row_getdetails['edu_name']; ?> </a>
 														</td>
@@ -1275,7 +1259,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															<?php echo $row_getdetails['data_notes'] ? $row_getdetails['data_notes'] : "<br /><p class='text-muted text-center'>No Notes</p>" ?>
 														</td>
 													<?php } ?>
-
 												</tr>
 												<tr>
 													<td><strong>Institution:</strong></td>
@@ -1292,7 +1275,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 													<?php } ?>
 												</tr>
 												<tr>
-
 													<td><strong>Course:</strong></td>
 													<td>
 														<a href="#"><?php echo $row_getdetails['course_provided']; ?> </a>
@@ -1305,11 +1287,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															<a href="#"><?php echo $row_getdetails['match_status_course']; ?> </a>
 														</td>
 													<?php } ?>
-
-
 												</tr>
 												<tr>
-
 													<td><strong>Course Specialization:</strong></td>
 													<td>
 														<a href="#"><?php echo $row_getdetails['specialization_provided']; ?> </a>
@@ -1322,11 +1301,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															<a href="#"><?php echo $row_getdetails['match_status_specialization']; ?> </a>
 														</td>
 													<?php } ?>
-
-
 												</tr>
 												<tr>
-
 													<td><strong>Award:</strong></td>
 													<td>
 														<a href="#"><?php echo $row_getdetails['award_provided']; ?> </a>
@@ -1368,8 +1344,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 															- </td>
 													<?php } ?>
 												</tr>
-
-
 												<thead>
 													<tr>
 														<td colspan="2">
@@ -1400,13 +1374,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 													<?php } ?>
 												</tr>
 											</table>
-
 									</div>
 									<?php
 											if ($row_getdetails['review_status'] == 'REJECTED' || $row_getdetails['review_status'] == 'APPROVED') {
 									?>
-
-
 										<div class="col-lg-12" align="center">
 											<table id="simple-table" class="table  table-striped  table-bordered table-hover">
 
@@ -1452,12 +1423,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 												?>
 											</table>
 										</div>
-
-
 									<?php
 											} ?>
 									<?php
-
 											// if ($row_getdetails['status'] == '11' || $row_getdetails['status'] == '22') {
 									?>
 									<?php if ($is_negative == 'negative') { ?>
@@ -1476,10 +1444,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 										<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
 										<a href="educationcheck.php?mark_as_negative=1&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>" class="btn btn-xs btn-warning">
 											<i class="ace-icon fa fa-times bigger-120">Mark As Negative</i></a>
-
 									<?php } ?>
-
-
 									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i><a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=11&search_id_approve=<?php echo $search_ref; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>&edu_id=<?php echo $row_getdetails['edu_id']; ?>"> <button class="btn btn-xs btn-success">
 											<i class="ace-icon fa fa-check bigger-120">Approve</i> </button></a>
 
@@ -1710,14 +1675,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 								<?php
 								?>
-
 								</div>
-
 							</div>
-
-
-
-
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.page-content -->
