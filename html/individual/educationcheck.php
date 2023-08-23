@@ -1776,6 +1776,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
+			console.log($('#updateformbtn'))
 			$('#updateformbtn').click(function(e) {
 				console.log('form clicked');
 			})
