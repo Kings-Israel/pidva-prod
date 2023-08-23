@@ -52,10 +52,6 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	echo 'Form posted';
-}
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] === "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
@@ -1047,10 +1043,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
-																							<button type="submit" value="submit" class="btn btn-info">
+																							<!-- <button type="submit" value="submit" class="btn btn-info">
 																								<i class="ace-icon fa fa-check bigger-110"></i>Save
-																							</button>
-																							   
+																							</button> -->
+																							<input type="submit" value="Submit" class="btn btn-info">
 																							<button class="btn" type="reset">
 																								<i class="ace-icon fa fa-undo bigger-110"></i>Reset
 																							</button>
