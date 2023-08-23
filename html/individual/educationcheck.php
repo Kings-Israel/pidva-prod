@@ -53,6 +53,7 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
+	print $_POST['student_token'];
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
 		$date_insert = date('dmYhis');
@@ -743,11 +744,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 											">
 												<thead>
 													<tr>
-
 														<td colspan="2"><strong>Status</strong></td>
 
 														<td colspan="2"><?php
-
 																		if ($row_getdetails['status'] == '11') {
 																		?>
 
@@ -776,7 +775,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																		}
 															?>
 														</td>
-
 													</tr>
 													<tr>
 														<td><strong>Data Set</strong></td>
@@ -979,6 +977,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																		<div class="modal-body padding">
 																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal" name="checkindb">
+																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
 																				<input type="hidden" id="search_id" name="search_id" value="<?php echo $search_ref; ?>" />
@@ -1053,7 +1052,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							</button>
 																						</div>
 																					</div>
-																					<input type="hidden" name="MM_insert" value="checkindb">
 																			</form>
 																		</div>
 																		<div class="modal-footer no-margin-top">
