@@ -53,10 +53,10 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 // if (isset($_POST['test'])) {
-// 	echo $_POST['test'];
-// }
-
+	// }
+	
 if ((isset($_POST['test'])) && ($_POST['test'] === 'checkindb')) {
+	echo $_POST['test'];
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
 		$date_insert = date('dmYhis');
