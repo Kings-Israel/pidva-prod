@@ -53,7 +53,7 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 if (isset($_POST['test'])) {
-	echo 'form submitted';
+	echo $_POST['edu_id'];
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] === "checkindb")) {
