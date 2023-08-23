@@ -556,7 +556,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 	<link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
-	<link rel="stylesheet" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 	<script src="../../assets/js/ace-extra.js"></script>
 </head>
 
@@ -1777,8 +1778,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<script src="../../assets/js/ace/ace.settings-skin.js"></script>
 	<script src="../../assets/js/ace/ace.widget-on-reload.js"></script>
 	<script src="../../assets/js/ace/ace.searchbox-autocomplete.js"></script>
-
-	<script type="text/javascript" src='https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js'></script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
