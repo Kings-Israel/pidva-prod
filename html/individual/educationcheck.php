@@ -979,7 +979,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																		</div>
 
 																		<div class="modal-body padding">
-																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal" id="update-form">
+																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal" id="updateform">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
@@ -1776,7 +1776,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$('#update-form').on('submit', function(e) {
+			$('#updateform').submit(function(e) {
 				e.preventDefault()
 				console.log('Form submitted')
 			})
