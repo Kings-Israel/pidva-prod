@@ -1034,7 +1034,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																						</div>
 																						<div id="editor" contenteditable>
 																						</div> -->
-																						<textarea name="data_notes" required="required" cols="40" rows="10"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
+																						<textarea name="data_notes" required="required" cols="120" rows="10"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div>
 
 																					<br />
