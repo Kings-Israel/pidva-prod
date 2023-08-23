@@ -974,13 +974,12 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span>
 																				</button>
-																				Fetch From Database
+																				Fetch From Database <? echo $_SERVER['SERVER_NAME'] ?>
 																			</div>
 																		</div>
 
 																		<div class="modal-body padding">
 																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
-																				<input type="text" name="<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>" id="">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
