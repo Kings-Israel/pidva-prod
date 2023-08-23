@@ -53,6 +53,10 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
+if (isset($_POST['MM_insert'])) {
+	echo $_POST['MM_insert'];
+}
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
