@@ -52,7 +52,6 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
@@ -83,9 +82,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 		$row_getstudent = mysqli_fetch_assoc($getstudent);
 		$totalRows_getstudent = mysqli_num_rows($getstudent);
 
+		echo $_POST['student_token'];
 		if ($totalRows_getstudent > 0) {
 			$name = $row_getstudent['student_first_name'] . " " . $row_getstudent['student_second_name'] . " " . $row_getstudent['student_third_name'];
-			echo $name;
 			$updateSQL = sprintf(
 				"UPDATE pel_psmt_edu_data SET edu_name=%s, edu_institution=%s, status=%s, date_added=%s, added_by=%s, edu_course=%s, edu_specialization=%s, data_source=%s, edu_award=%s, edu_graduation_year=%s, certificate_photo=%s, data_notes=%s, student_token=%s WHERE edu_id=%s",
 				GetSQLValueString($name, "text"),
@@ -639,16 +638,13 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 								<div class="col-xs-12">
 									<h3 align="left" class="header smaller lighter blue">Add Individual Education Details</h3>
 								</div>
-
 								<?php
-								$query_getstudent = "SELECT * FROM pel_psmt_request WHERE request_id = " . $colname_getrequestid . "";
-								$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
-								$row_getstudent = mysqli_fetch_assoc($getstudent);
-								$totalRows_getstudent = mysqli_num_rows($getstudent);
+									$query_getstudent = "SELECT * FROM pel_psmt_request WHERE request_id = " . $colname_getrequestid . "";
+									$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
+									$row_getstudent = mysqli_fetch_assoc($getstudent);
+									$totalRows_getstudent = mysqli_num_rows($getstudent);
 								?>
-
 								<h3 align="left" class=" smaller lighter blue"><strong>SEARCH REF: </strong> <?php echo $row_getstudent['request_ref_number']; ?></h3>
-
 								<div>
 									<table id="simple-table" class="table table-striped table-bordered table-hover">
 										<thead>
@@ -977,7 +973,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																			<div class="table-header">
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 																					<span class="white">&times;</span> </button>
-																				Fetch From Database edit
+																				Fetch From Database
 																			</div>
 																		</div>
 
