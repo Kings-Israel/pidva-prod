@@ -53,7 +53,110 @@ $errorcode = '';
 $certificate_photo_url = '';
 
 if (isset($_POST['test'])) {
-	echo $_POST['test'] === "checkindb" ? 'true' : 'false';
+	if ($_POST['test'] === "checkindb") {
+		echo $_POST['student_token'];
+		if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
+			date_default_timezone_set('Africa/Nairobi');
+			$date_insert = date('dmYhis');
+			$a = "ED-" . $_POST['student_token'] . "-" . $_POST['search_id'] . "-" . $date_insert;
+			$file_name = $a . "_" . $_FILES["certificate_photo"]["name"];
+	
+			$spaceName = 'individual-educationcertificates';
+	
+			$space = Spaces('L5GDPLSXS7VOIBRHDPXP', 'tQ2tBJg6kx5saEIyalSxCx1u39StDracsbPBMRGoOOE')->space('peleza', 'fra1');
+			$space->uploadFile(
+				$_FILES["certificate_photo"]["tmp_name"],
+				$spaceName . '/' . $file_name,
+				'public'
+			);
+			$filenameuploaded = $img_long_prefix . $file_name;
+		} else {
+			$filenameuploaded = isset($row_getstudent['certificate_photo']) ? $row_getstudent['certificate_photo'] : '';
+		}
+	
+		if (isset($_POST['student_token'])) {
+			$student_token = strtoupper($_POST['student_token']);
+	
+			$datetoday = date('Y-m-d');
+	
+			$query_getstudent = "SELECT * FROM pel_edu_data WHERE student_token = '$student_token' and student_status = '11'";
+			$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
+			$row_getstudent = mysqli_fetch_assoc($getstudent);
+			$totalRows_getstudent = mysqli_num_rows($getstudent);
+	
+			if ($totalRows_getstudent > 0) {
+				$name = $row_getstudent['student_first_name'] . " " . $row_getstudent['student_second_name'] . " " . $row_getstudent['student_third_name'];
+				$updateSQL = sprintf(
+					"UPDATE pel_psmt_edu_data SET edu_name=%s, edu_institution=%s, status=%s, date_added=%s, added_by=%s, edu_course=%s, edu_specialization=%s, data_source=%s, edu_award=%s, edu_graduation_year=%s, certificate_photo=%s, data_notes=%s, student_token=%s WHERE edu_id=%s",
+					GetSQLValueString($name, "text"),
+					GetSQLValueString(strtoupper($row_getstudent['institution_name']), "text"),
+					GetSQLValueString($_POST['status'], "text"),
+					GetSQLValueString($_POST['date_added'], "text"),
+					GetSQLValueString($_POST['added_by'], "text"),
+					GetSQLValueString($row_getstudent['course_name'], "text"),
+					GetSQLValueString($row_getstudent['student_specialization'], "text"),
+					GetSQLValueString($row_getstudent['data_source'], "text"),
+					GetSQLValueString($row_getstudent['award'], "text"),
+					GetSQLValueString($row_getstudent['graduation_date'], "text"),
+					GetSQLValueString($filenameuploaded ? $filenameuploaded : $certificate_photo_url, "text"),
+					GetSQLValueString($_POST['data_notes'], "text"),
+					GetSQLValueString($student_token, "text"),
+					GetSQLValueString($_POST['edu_id'], "int")
+				);
+	
+				$colname_getrequestid = $_POST['request_id'];
+				$colname_getmoduleid = $_POST['moduleid'];
+	
+				if (!$connect->query($updateSQL)) {
+					echo $connect->error . '<br>';
+					echo $updateSQL;
+					return
+						$errorcode = '<div class="alert alert-danger">
+												<button type="button" class="close" data-dismiss="alert">
+													<i class="ace-icon fa fa-times"></i>
+												</button>
+	
+												<strong>
+													<i class="ace-icon fa fa-times"></i>
+													Oh snap!
+												</strong>
+	
+											 Details of the Student Data haven\'t been added.
+												<br />
+											</div>';
+				} else {
+					$updateGoTo = "educationcheck.php?request_id=$colname_getrequestid&moduleid=$colname_getmoduleid";
+					header(sprintf("Location: %s", $updateGoTo));
+				}
+			} else {
+				$errorcode = '<div class="alert alert-danger">
+												<button type="button" class="close" data-dismiss="alert">
+													<i class="ace-icon fa fa-times"></i>
+												</button>
+	
+												<strong>
+													<i class="ace-icon fa fa-times"></i>
+													Oh snap!
+												</strong>
+	
+											 No Details of Student found Kindly go and Upload Education Details
+												<br />
+											</div>';
+			}
+		} else {
+			$sql = sprintf(
+				"UPDATE pel_psmt_edu_data SET edu_name=NULL, edu_institution=NULL, status=NULL, date_added=NULL, added_by=NULL, edu_course=NULL, edu_specialization=NULL,data_source=NULL, edu_award=NULL, edu_graduation_year=NULL, certificate_photo=%s, data_notes=%s, student_token=NULL WHERE edu_id=%s",
+				GetSQLValueString($filenameuploaded ? $filenameuploaded : $certificate_photo_url, "text"),
+				GetSQLValueString($_POST['data_notes'], "text"),
+				GetSQLValueString($_POST['edu_id'], "int")
+			);
+	
+			if (!$connect->query($sql)) {
+				echo $connect->error;
+				return;
+			}
+		}
+	}
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] === "checkindb")) {
