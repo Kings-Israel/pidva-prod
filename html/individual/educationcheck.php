@@ -556,6 +556,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 	<link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+	<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 	<script src="../../assets/js/ace-extra.js"></script>
 </head>
 
@@ -1008,8 +1009,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																				<div class="space-10"></div>
 																				<label class="col-sm-4">Comments</label>
 																				<div class="col-sm-12">
-																					<div id="editparent">
-																						<!-- <div id="editControls">
+																					<!-- <div id="editparent">
+																						<div id="editControls">
 																							<div class="btn-group">
 																								<a class="btn btn-xs btn-default" data-role="undo" href="#" title="Undo"><i class="fa fa-undo"></i></a>
 																								<a class="btn btn-xs btn-default" data-role="redo" href="#" title="Redo"><i class="fa fa-repeat"></i></a>
@@ -1033,9 +1034,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																							</div>
 																						</div>
 																						<div id="editor" contenteditable>
-																						</div> -->
-																						<textarea name="data_notes" required="required" cols="130" rows="10" style="border-radius: 10px; margin-top: 10px"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
-																					</div>
+																						</div>
+																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
+																					</div> -->
+																					<textarea name="data_notes" id="editor" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 
 																					<br />
 
@@ -1775,6 +1777,11 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+		ClassicEditor
+            .create( document.querySelector('#editor') )
+            .catch(error => {
+                console.error( error );
+            });
 		jQuery(document).ready(function($) {
 			/** ******************************
 			 * Simple WYSIWYG
