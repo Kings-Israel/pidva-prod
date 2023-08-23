@@ -1009,7 +1009,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																				<label class="col-sm-4">Comments</label>
 																				<div class="col-sm-12">
 																					<div id="editparent">
-																						<div id="editControls">
+																						<!-- <div id="editControls">
 																							<div class="btn-group">
 																								<a class="btn btn-xs btn-default" data-role="undo" href="#" title="Undo"><i class="fa fa-undo"></i></a>
 																								<a class="btn btn-xs btn-default" data-role="redo" href="#" title="Redo"><i class="fa fa-repeat"></i></a>
@@ -1031,9 +1031,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																								<a class="btn btn-xs btn-default" data-role="h3" href="#" title="Heading 3"><i class="fa fa-header"></i><sup>3</sup></a>
 																								<a class="btn btn-xs btn-default" data-role="p" href="#" title="Paragraph"><i class="fa fa-paragraph"></i></a>
 																							</div>
-																						</div>
-																						<div id="editor" contenteditable>
-																						</div>
+																						</div> -->
+																						<!-- <div id="editor" contenteditable>
+																						</div> -->
 																						<textarea name="data_notes" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div>
 
