@@ -710,11 +710,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 										echo $errorcode;
 										?>
 									</div>
-
 									<?php
-									$search_ref = $row_getstudent['request_ref_number'];
-									$query_getdetails = "SELECT * FROM pel_psmt_edu_data WHERE search_id = '" . $search_ref . "' order by edu_graduation_year ASC";
-									$getdetails  = mysqli_query_ported($query_getdetails, $connect) or die(mysqli_error($connect));
+										$search_ref = $row_getstudent['request_ref_number'];
+										$query_getdetails = "SELECT * FROM pel_psmt_edu_data WHERE search_id = '" . $search_ref . "' order by edu_graduation_year ASC";
+										$getdetails  = mysqli_query_ported($query_getdetails, $connect) or die(mysqli_error($connect));
 									?>
 									<div class="col-lg-12" align="center">
 										<h3 align="left" class=" smaller lighter blue"><strong>EDUCATION CHECK DETAILS: </strong>
@@ -965,13 +964,15 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																		<div class="modal-header no-padding">
 																			<div class="table-header">
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-																					<span class="white">&times;</span> </button>
+																					<span class="white">&times;</span>
+																				</button>
 																				Fetch From Database
 																			</div>
 																		</div>
 
 																		<div class="modal-body padding">
-																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
+																			<!-- <form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal"> -->
+																			<form method="POST" action="<?php echo $editFormAction; ?>" class="form-horizontal">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
