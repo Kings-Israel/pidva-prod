@@ -53,10 +53,6 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
-if (isset($_POST['test'])) {
-	print 'Submit working';
-}
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
@@ -986,8 +982,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																		<div class="modal-body padding">
 																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
-																				<input type="hidden" name="test" value="test">
-																				<!-- <input type="hidden" name="MM_insert" value="checkindb"> -->
+																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
 																				<input type="hidden" id="search_id" name="search_id" value="<?php echo $search_ref; ?>" />
