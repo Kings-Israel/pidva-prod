@@ -979,7 +979,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																		</div>
 
 																		<div class="modal-body padding">
-																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
+																			<form method="POST" enctype="multipart/form-data" action="" class="form-horizontal">
 																				<input type="hidden" name="MM_insert" value="checkindb">
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
@@ -1043,10 +1043,9 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
-																							<!-- <button type="submit" value="submit" class="btn btn-info">
+																							<button type="submit" value="submit" class="btn btn-info">
 																								<i class="ace-icon fa fa-check bigger-110"></i>Save
-																							</button> -->
-																							<input type="submit" value="Submit" class="btn btn-info">
+																							</button>
 																							<button class="btn" type="reset">
 																								<i class="ace-icon fa fa-undo bigger-110"></i>Reset
 																							</button>
