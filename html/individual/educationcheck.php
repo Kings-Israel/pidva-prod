@@ -557,7 +557,6 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 	<link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 	<script src="../../assets/js/ace-extra.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 </head>
 
 <body class="no-skin">
@@ -1775,22 +1774,14 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<script src="../../assets/js/ace/ace.widget-on-reload.js"></script>
 	<script src="../../assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
+	<script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'></script>
+    <script>
+    tinymce.init({
+			selector: "#editor"
+    });
+	</script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-		ClassicEditor
-            .create( document.querySelector('#editor'), {
-								toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-								heading: {
-										options: [
-												{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-												{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-												{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-										]
-								}
-						})
-            .catch(error => {
-                console.error( error );
-            });
 		jQuery(document).ready(function($) {
 			/** ******************************
 			 * Simple WYSIWYG
