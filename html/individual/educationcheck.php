@@ -1038,8 +1038,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 																						<textarea name="data_notes" id="editorCopy" required="required" style="display:none;"><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea>
 																					</div> -->
 																					<!-- <textarea name="data_notes" id="x" required><?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?></textarea> -->
-																					<input id="x" type="hidden" name="data_notes" value="<?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?>" />
-    																			<trix-editor input="x"></trix-editor>
+																					<input id="x" type="hidden" name="data_notes" />
+    																			<trix-editor input="x">
+																						<?php echo isset($row_getdetails['data_notes']) ? $row_getdetails['data_notes'] : '' ?>
+																					</trix-editor>
 																					<br />
 
 																					<div class="space-10"></div>
