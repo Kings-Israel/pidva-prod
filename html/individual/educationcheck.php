@@ -53,9 +53,9 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
-// if (isset($_POST['test'])) {
-// 	echo $_POST["MM_insert"] === "checkindb" ? "true" : "false";
-// }
+if (isset($_POST['MM-insert'])) {
+	echo $_POST["MM-insert"] === "checkindb" ? "true" : "false";
+}
 
 if ((isset($_POST["MM-insert"])) && ($_POST["MM-insert"] === "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
