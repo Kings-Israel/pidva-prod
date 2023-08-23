@@ -52,7 +52,7 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
-if (isset($_POST["MM_insert"])) {
+if ($_POST) {
 	echo $_POST["MM_insert"];
 }
 
