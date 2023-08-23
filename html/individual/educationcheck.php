@@ -1775,6 +1775,11 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+		let form = document.getElementById('updateform')
+		form.addEventListener('submit', function(e) {
+			e.preventDefault()
+			console.log('submitted')
+		})
 		jQuery(document).ready(function($) {
 			/** ******************************
 			 * Simple WYSIWYG
