@@ -1043,7 +1043,7 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
-																							<button type="submit" value="submit" class="btn btn-info">
+																							<button type="submit" value="submit" class="btn btn-info" id="updateformbtn">
 																								<i class="ace-icon fa fa-check bigger-110"></i>Save
 																							</button>
 																							<button class="btn" type="reset">
@@ -1776,8 +1776,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$('#updateform').submit(function() {
-				console.log('form submitted');
+			$('#updateformbtn').click(function(e) {
+				console.log('form clicked');
 			})
 			
 			/** ******************************
