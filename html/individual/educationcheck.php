@@ -53,6 +53,10 @@ if (isset($_GET['moduleid'])) {
 $errorcode = '';
 $certificate_photo_url = '';
 
+if (isset($_POST['test'])) {
+	print 'Submit working';
+}
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "checkindb")) {
 	if (is_uploaded_file($_FILES['certificate_photo']['tmp_name'])) {
 		date_default_timezone_set('Africa/Nairobi');
@@ -734,39 +738,37 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 											?>
 											<h2 align="left" class=" smaller lighter blue"><strong>COURSE NAME: </strong> <?php echo $row_getdetails['edu_course']; ?>
 											</h2>
-											<table id="simple-table" class="table table-bordered table-hoverx <?php echo $is_negative; ?>
-											">
+											<table id="simple-table" class="table table-bordered table-hoverx <?php echo $is_negative; ?>">
 												<thead>
 													<tr>
 														<td colspan="2"><strong>Status</strong></td>
-
-														<td colspan="2"><?php
-																		if ($row_getdetails['status'] == '11') {
-																		?>
-
-																<span class="label label-sm label-success">Valid Data</span>
+														<td colspan="2">
 															<?php
-																		}
-																		if ($row_getdetails['status'] == '00') {
-															?>
-																<span class="label label-sm label-danger">Not Correct Data</span>
-															<?php
-																		}
-																		if ($row_getdetails['status'] == '22') {
-															?>
-																<span class="label label-sm label-warning">Not Reviewed</span>
-															<?php
-																		}
-																		if ($row_getdetails['status'] == '33') {
-															?>
-																<span class="label label-sm label-primary">Raw Data</span>
-															<?php
-																		}
-																		if ($row_getdetails['status'] == '44') {
-															?>
-																<span class="label label-sm label-primary">Match Status Not Updated</span>
-															<?php
-																		}
+																if ($row_getdetails['status'] == '11') {
+																	?>
+																		<span class="label label-sm label-success">Valid Data</span>
+																	<?php
+																}
+																if ($row_getdetails['status'] == '00') {
+																	?>
+																		<span class="label label-sm label-danger">Not Correct Data</span>
+																	<?php
+																}
+																if ($row_getdetails['status'] == '22') {
+																	?>
+																		<span class="label label-sm label-warning">Not Reviewed</span>
+																	<?php
+																}
+																if ($row_getdetails['status'] == '33') {
+																	?>
+																		<span class="label label-sm label-primary">Raw Data</span>
+																	<?php
+																}
+																if ($row_getdetails['status'] == '44') {
+																	?>
+																		<span class="label label-sm label-primary">Match Status Not Updated</span>
+																	<?php
+																}
 															?>
 														</td>
 													</tr>
@@ -940,22 +942,34 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 															</div><!-- PAGE CONTENT ENDS -->
 														</td>
-														<td><strong>Data Collected</strong> &nbsp;&nbsp; <?php
+														<td>
+															<strong>Data Collected</strong> &nbsp;&nbsp;
+															<?php
 																if ($row_getdetails['status'] == '11' || $row_getdetails['status'] == '22') {
 																	?>
-																	<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=00&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-danger">
-																		<i class="ace-icon fa fa-trash-o bigger-120"></i> </button></a> <?php
+																		<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=00&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>">
+																			<button class="btn btn-xs btn-danger">
+																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			</button>
+																		</a>
+																	<?php
 																}
 																if ($row_getdetails['status'] == '00') {
 																	?>
-																	<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=22&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>"> <button class="btn btn-xs btn-success">
-																		<i class="ace-icon fa fa-check bigger-120"></i> </button></a>
+																		<a href="educationcheck.php?fullnames=<?php echo $_SESSION['MM_full_names'] . "(" . $_SESSION['MM_USR_EMAIL'] . ")"; ?>&status=22&edu_id=<?php echo $row_getdetails['edu_id']; ?>&request_id=<?php echo $colname_getrequestid; ?>&moduleid=<?php echo $colname_getmoduleid; ?>">
+																			<button class="btn btn-xs btn-success">
+																				<i class="ace-icon fa fa-check bigger-120"></i>
+																			</button>
+																		</a>
 																	<?php
 																}
-															?><i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i><a href="#modal-checkindb-<?php echo $edu_id ?>" role="button" class="green" data-toggle="modal">
+															?>
+															<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+															<a href="#modal-checkindb-<?php echo $edu_id ?>" role="button" class="green" data-toggle="modal">
 																<button class="btn btn-xs btn-success">
 																	<i class="ace-icon smaller-80 green"></i>Update Data
-																</button></a>
+																</button>
+															</a>
 
 															<!-- HERE IS WHERE I WANT -->
 															<div id="modal-checkindb-<?php echo $edu_id ?>" class="modal fade" tabindex="-1">
@@ -972,7 +986,8 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																		<div class="modal-body padding">
 																			<form method="POST" enctype="multipart/form-data" action="<?php echo $editFormAction; ?>" class="form-horizontal">
-																				<input type="hidden" name="MM_insert" value="checkindb">
+																				<input type="hidden" name="test" value="test">
+																				<!-- <input type="hidden" name="MM_insert" value="checkindb"> -->
 																				<input type="hidden" id="request_id" name="request_id" value="<?php echo $colname_getrequestid; ?>" />
 																				<input type="hidden" id="moduleid" name="moduleid" value="<?php echo $colname_getmoduleid; ?>" />
 																				<input type="hidden" id="search_id" name="search_id" value="<?php echo $search_ref; ?>" />
@@ -1035,11 +1050,10 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 
 																					<div class="clearfix form-actions">
 																						<div class="col-md-offset-3 col-md-9">
-																							<!-- <button onClick="submit" type="submit" value="submit" type="button" class="btn btn-info">
+																							<button type="submit" value="submit" class="btn btn-info">
 																								<i class="ace-icon fa fa-check bigger-110"></i>
 																								Save
-																							</button> -->
-																							<input type="submit" value="Save" class="btn btn-info">
+																							</button>
 																							   
 																							<button class="btn" type="reset">
 																								<i class="ace-icon fa fa-undo bigger-110"></i>
@@ -1371,34 +1385,31 @@ if ((isset($_GET['search_id_approve'])) && ($_GET['search_id_approve'] != "")) {
 											</table>
 									</div>
 									<?php
-											if ($row_getdetails['review_status'] == 'REJECTED' || $row_getdetails['review_status'] == 'APPROVED') {
-									?>
+										if ($row_getdetails['review_status'] == 'REJECTED' || $row_getdetails['review_status'] == 'APPROVED') {
+										?>
 										<div class="col-lg-12" align="center">
 											<table id="simple-table" class="table  table-striped  table-bordered table-hover">
-
 												<tr>
 													<td>
 														<strong>REVIEW NOTES:</strong>
 													</td>
 													<td>
 														<?php
-
-														if ($row_getdetails['review_status'] == 'APPROVED') {
-														?>
-
-															<span class="label label-sm label-success">APPROVED</span>
-														<?php
-														}
-														if ($row_getdetails['review_status'] == 'REJECTED') {
-														?>
-															<span class="label label-sm label-danger">REJECTED</span>
-														<?php
-														}
-														if ($row_getdetails['status'] == '22') {
-														?>
-															<span class="label label-sm label-warning">Not Reviewed</span>
-														<?php
-														}
+															if ($row_getdetails['review_status'] == 'APPROVED') {
+																?>
+																	<span class="label label-sm label-success">APPROVED</span>
+																<?php
+															}
+															if ($row_getdetails['review_status'] == 'REJECTED') {
+																?>
+																	<span class="label label-sm label-danger">REJECTED</span>
+																<?php
+															}
+															if ($row_getdetails['status'] == '22') {
+																?>
+																	<span class="label label-sm label-warning">NOT REVIEWED</span>
+																<?php
+															}
 														?>
 													</td>
 													<td><strong>VERIFIED BY:</strong></td>
