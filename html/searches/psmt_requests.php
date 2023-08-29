@@ -154,12 +154,13 @@ if (isset($_POST['request_ref_number'])) {
 		$mail->isHTML(true);  // Set email format to HTML
 
 		$bodyContent = '<p><img src="http://46.101.16.235/pidva/assets/images/PelezaLogo.png" width="166" height="60" /></p>
-<p><strong>Hi ' . $clientname . ',</strong></p>
-<p>The background search report for  Tolbert Derek Omini has been uploaded kindly login to view it.</p>
-<p><strong><a href="http://46.101.16.235/psmt">LOGIN</a></strong></p>
-<p>  - The Peleza Team<br />
-  Support: +254 796 111 020 or +254  Email:&nbsp;<a href="mailto:verify@peleza.com">verify@peleza.com</a>&nbsp;<br />
-  ® Peleza Int, 2018. All rights reserved. </p>';
+											<p><strong>Hi ' . $clientname . ',</strong></p>
+											<p>The background search report for  Tolbert Derek Omini has been uploaded kindly login to view it.</p>
+											<p><strong><a href="http://46.101.16.235/psmt">LOGIN</a></strong></p>
+											<p>  - The Peleza Team<br />
+												Support: +254 796 111 020 or +254  Email:&nbsp;<a href="mailto:verify@peleza.com">verify@peleza.com</a>&nbsp;<br />
+												® Peleza Int, 2018. All rights reserved.
+										</p>';
 		//$bodyContent .= '<p>This is the HTML email sent from localhost using PHP script by <b>CodexWorld</b></p>';
 
 		$mail->Subject = 'Confidential Background Check Report';
@@ -169,8 +170,7 @@ if (isset($_POST['request_ref_number'])) {
 			echo 'Message could not be sent.';
 			echo 'Mailer Error: ' . $mail->ErrorInfo;
 		} else {
-			// echo 'Message has been sent'; 
-
+			// echo 'Message has been sent';
 			$updateSQL = sprintf(
 				"UPDATE pel_psmt_request SET verification_status=%s, notify_by=%s, notify_date=%s, report_file=%s  WHERE request_id=%s",
 				GetSQLValueString($_POST['verification_status'], "text"),
@@ -198,7 +198,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
 	$editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-
 mysqli_select_db($connect, $database_connect);
 
 $query_getallsearches = "SELECT * FROM pel_psmt_request WHERE verification_status IN ('44','33','11','00','22') ORDER BY request_date DESC LIMIT 500";
@@ -208,11 +207,6 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<style type="text/css">
-	<!--
-	-->
-</style>
-
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8" />
@@ -274,15 +268,13 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 		</script>
 
 		<!-- #section:basics/sidebar -->
-		<div id="sidebar" class="sidebar                  responsive">
+		<div id="sidebar" class="sidebar responsive">
 			<script type="text/javascript">
 				try {
 					ace.settings.check('sidebar', 'fixed')
 				} catch (e) {}
 			</script>
 			<?php include('../sidebarmenu2.php'); ?>
-
-
 			<!-- #section:basics/sidebar.layout.minimize -->
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 				<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -294,7 +286,6 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 					ace.settings.check('sidebar', 'collapsed')
 				} catch (e) {}
 			</script>
-
 		</div>
 
 		<!-- /section:basics/sidebar -->
@@ -326,66 +317,64 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 						<!-- <form class="form-search">
 								<span class="input-icon">
 									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>								</span>
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
 							</form> -->
 					</div><!-- /.nav-search -->
-
 					<!-- /section:basics/content.searchbox -->
 				</div>
-
 				<!-- /section:basics/content.breadcrumbs -->
 				<div class="page-content">
-
-
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 							<!--		
 								<div class="hr hr-18 dotted hr-double"></div>
 
-						<h4 class="pink">
+								<h4 class="pink">
 									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-									<a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>								</h4>
+									<a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>
+								</h4>
 
 								<div class="hr hr-18 dotted hr-double"></div>
--->
+							-->
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="col-xs-12">
-
 										<h3 align="left" class="header smaller lighter blue">PSMT REQUESTS</h3>
 									</div>
-									<!--    <div  class="col-xs-6">
-                                        <h3 align="right" class="header smaller lighter blue">
-									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-									<a href="#modal-newclient" role="button" class="green" data-toggle="modal">	
-                                  <button class="btn btn-white btn-info btn-bold">
-												<i class="ace-icon bigger-120 green"></i>Add New Client
-</button></a></h3>
-                           
-</div>-->
-
-
-
+									<!--    
+										<div  class="col-xs-6">
+											<h3 align="right" class="header smaller lighter blue">
+												<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+												<a href="#modal-newclient" role="button" class="green" data-toggle="modal">	
+													<button class="btn btn-white btn-info btn-bold">
+														<i class="ace-icon bigger-120 green"></i>Add New Client
+													</button>
+												</a>
+											</h3>
+										</div>
+									-->
 									<div class="clearfix">
-
 										<div class="pull-right tableTools-container"></div>
 									</div>
 									<div class="table-header">
-										Results for "Psmt BG Requests" </div>
-
+										Results for "Psmt BG Requests"
+									</div>
 									<!-- div.table-responsive -->
-
 									<!-- div.dataTables_borderWrap -->
 									<div>
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
 													<th class="center">
-														<!--<label class="pos-rel">
+														<!--
+															<label class="pos-rel">
 																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>															</label>--> NO:
-
+																<span class="lbl"></span>
+															</label>
+														-->
+														NO:
 													</th>
 													<th>Client Company</th>
 													<th>Client Name</th>
@@ -393,28 +382,17 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 													<th>Package</th>
 													<th>Dataset Name</th>
 													<th>Progress</th>
-
-
 													<th>Ref Number</th>
-
 													<th>Date Requested</th>
-													<!--       <th>Report</th>-->
-
+													<!--<th>Report</th>-->
 													<th class="hidden-480">Status</th>
-
 													<th>Action</th>
 												</tr>
 											</thead>
-
 											<tbody>
 												<?php
-
 												$x = 1;
 												do {
-
-
-
-
 												?>
 													<tr>
 														<td class="center">
@@ -435,87 +413,73 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 														<td><?php echo "0%"; ?></td>
 														<td><?php echo $row_getallsearches['request_ref_number']; ?></td>
 														<td><?php echo $row_getallsearches['request_date']; ?></td>
-
-
 														<!--  <td><a href="reportfiles/<?php echo $row_getallsearches['report_file']; ?>" target="_self"><img src="../../assets/images/index.png" width="30px" height="30px"></a></td>  -->
 
 														<td class="hidden-480"><?php
-
-																				if ($row_getallsearches['verification_status'] == '44') {
-																				?>
-
-																<span class="label label-sm label-warning">In Progress</span>
-															<?php
-																				}
-																				if ($row_getallsearches['verification_status'] == '00') {
-															?>
-																<span class="label label-sm label-purple">New Request</span>
-															<?php
-																				}
-																				if ($row_getallsearches['verification_status'] == '11') {
-															?>
-																<span class="label label-sm label-success">Final</span>
-															<?php
-																				}
-																				if ($row_getallsearches['verification_status'] == '33') {
-															?>
-																<span class="label label-sm label-success">Interim</span>
-															<?php
-																				}
-																				if ($row_getallsearches['verification_status'] == '22') {
-															?>
-																<span class="label label-sm label-danger">Rejected</span>
-															<?php
-																				}
+															if ($row_getallsearches['verification_status'] == '44') {
+																?>
+																	<span class="label label-sm label-warning">In Progress</span>
+																<?php
+															}
+															if ($row_getallsearches['verification_status'] == '00') {
+																?>
+																	<span class="label label-sm label-purple">New Request</span>
+																<?php
+															}
+															if ($row_getallsearches['verification_status'] == '11') {
+																?>
+																	<span class="label label-sm label-success">Final</span>
+																<?php
+															}
+															if ($row_getallsearches['verification_status'] == '33') {
+																?>
+																	<span class="label label-sm label-success">Interim</span>
+																<?php
+															}
+															if ($row_getallsearches['verification_status'] == '22') {
+																?>
+																	<span class="label label-sm label-danger">Rejected</span>
+																<?php
+															}
 															?>
 														</td>
 
 														<td>
 															<?php
 															if ($row_getallsearches['user_lock'] == '00') {
-
-
 																if (in_array('ASSIGN_MANUAL_SEARCH_REQUESTS', $roledata)) {
-
-															?><form method="POST" action="<?php echo $editFormAction; ?>" id="assignform" name="assignform">
-
-																		<input type="hidden" name="ID" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['request_id']; ?>" />
-
-																		<input type="hidden" name="user_name" class="col-xs-10 col-sm-5" value="<?php echo $_SESSION['MM_full_names']; ?>" />
-																		<input type="hidden" name="user_id" class="col-xs-10 col-sm-5" value="<?php echo $_SESSION['MM_USR_ID']; ?>" />
-																		<input type="hidden" name="user_lock" class="col-xs-10 col-sm-5" value="11" />
-																		<input type="hidden" name="user_lock_date" class="col-xs-10 col-sm-5" value="<?php echo date('Y-m-d h:i:s'); ?>" />
-
-																		<input type="hidden" name="status" class="col-xs-10 col-sm-5" value="44" />
-																		<button type="submit" class="btn btn-xs btn-success"><i class="ace-icon fa fa-check bigger-120"></i>
-																		</button>
-																		<input type="hidden" name="MM_update" value="assignform">
-																	</form>
-																<?php
+																	?>
+																		<form method="POST" action="<?php echo $editFormAction; ?>" id="assignform" name="assignform">
+																			<input type="hidden" name="ID" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['request_id']; ?>" />
+																			<input type="hidden" name="user_name" class="col-xs-10 col-sm-5" value="<?php echo $_SESSION['MM_full_names']; ?>" />
+																			<input type="hidden" name="user_id" class="col-xs-10 col-sm-5" value="<?php echo $_SESSION['MM_USR_ID']; ?>" />
+																			<input type="hidden" name="user_lock" class="col-xs-10 col-sm-5" value="11" />
+																			<input type="hidden" name="user_lock_date" class="col-xs-10 col-sm-5" value="<?php echo date('Y-m-d h:i:s'); ?>" />
+																			<input type="hidden" name="status" class="col-xs-10 col-sm-5" value="44" />
+																			<button type="submit" class="btn btn-xs btn-success"><i class="ace-icon fa fa-check bigger-120"></i>
+																			</button>
+																			<input type="hidden" name="MM_update" value="assignform">
+																		</form>
+																	<?php
 																}
 															} else {
 																?>
-
-
-
-																<a href="#modal-viewrequest-<?php echo $row_getallsearches['request_id']; ?>" role="button" class="green" data-toggle="modal"> <button class="btn btn-xs btn-info">
-																		<i class="ace-icon fa fa-search-plus bigger-130"></i> </button></a>
+																	<a href="#modal-viewrequest-<?php echo $row_getallsearches['request_id']; ?>" role="button" class="green" data-toggle="modal"> <button class="btn btn-xs btn-info">
+																		<i class="ace-icon fa fa-search-plus bigger-130"></i> </button>
+																	</a>
 																<?php
-
 																if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata)) {
-
-																?>
-																	<a href="psmt_requests_response.php?request_id=<?php echo $row_getallsearches['request_id']; ?>" class="orange"> <button class="btn btn-xs btn-warning">
-																			<i class="ace-icon fa fa-flag bigger-120"></i>
-																		</button> </a>
-															<?php
+																	?>
+																		<a href="psmt_requests_response.php?request_id=<?php echo $row_getallsearches['request_id']; ?>" class="orange">
+																			<button class="btn btn-xs btn-warning">
+																				<i class="ace-icon fa fa-flag bigger-120"></i>
+																			</button>
+																		</a>
+																	<?php
 																}
 															}
 															?>
-
-
 															<div id="modal-viewrequest-<?php echo $row_getallsearches['request_id']; ?>" class="modal fade" tabindex="-1">
-
 																<div class="modal-dialog">
 																	<div class="modal-content">
 																		<div class="modal-header no-padding">
@@ -527,9 +491,7 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 																		</div>
 
 																		<div class="modal-body padding">
-
 																			<table align="center" width="100%" border="0" cellpadding="30" cellspacing="30">
-
 																				<tr>
 																					<td>REQUESTED BY:</td>
 																					<td><?php echo $row_getallsearches['client_name']; ?></td>
@@ -539,7 +501,6 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 																					</td>
 																					<td><?php echo $row_getallsearches['company_name']; ?></td>
 																				</tr>
-
 																				<tr>
 																					<td><strong>Dataset Name:</strong>
 																					</td>
@@ -549,75 +510,64 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 																					<td bgcolor="#FFFFFF"><strong>Dataset Category:</strong></td>
 																					<td bgcolor="#FFFFFF"><?php echo $row_getallsearches['request_dataset_cat']; ?></td>
 																				</tr>
-
 																				<tr>
 																					<td bgcolor="#FFFFFF"><strong>Package Name:</strong></td>
 																					<td bgcolor="#FFFFFF"><?php echo $row_getallsearches['request_package']; ?></td>
 																				</tr>
-
 																				<tr>
 																					<td bgcolor="#FFFFFF"><strong>Parent Name:</strong></td>
 																					<td bgcolor="#FFFFFF"><?php echo $row_getallsearches['parent_name']; ?></td>
 																				</tr>
 																				<tr>
 																					<td>Request Status</td>
-																					<td><strong><?php
-
-																								if ($row_getallsearches['status'] == '44') {
-																								?>
-
-																								In Progress
+																					<td>
+																						<strong>
 																							<?php
+																								if ($row_getallsearches['status'] == '44') {
+																									?>
+																										In Progress
+																									<?php
 																								}
 																								if ($row_getallsearches['status'] == '00') {
-																							?>
-																								New Request
-																							<?php
+																									?>
+																										New Request
+																									<?php
 																								}
-
-																							?> </strong>
+																							?>
+																						</strong>
 																					</td>
-
 																				</tr>
 																				<tr>
 																					<td bgcolor="#FFFFFF"><strong>FILES UPLOADED</strong></td>
 																					<td bgcolor="#FFFFFF"></td>
 																				</tr>
 																				<?php
-																				$filetracker = mysqli_escape_string($connect, $row_getallsearches['file_tracker']);
-
-																				mysqli_select_db($connect, $database_connect);
-																				$query_getfiles = "SELECT pel_psmt_request.request_id, pel_psmt_files.psmtfile_filetoken,pel_psmt_files.psmtfile_id,pel_psmt_files.psmtfile_name,pel_psmt_files.psmtfile_type,pel_psmt_files.`status`,
-pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
-Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker'";
-																				$getfiles = mysqli_query_ported($query_getfiles, $connect) or die(mysqli_error($connect));
-																				$row_getfiles = mysqli_fetch_assoc($getfiles);
-																				$totalRows_getfiles = mysqli_num_rows($getfiles);
-
-																				do {
+																					$filetracker = mysqli_escape_string($connect, $row_getallsearches['file_tracker']);
+																					mysqli_select_db($connect, $database_connect);
+																					$query_getfiles = "SELECT pel_psmt_request.request_id, pel_psmt_files.psmtfile_filetoken,pel_psmt_files.psmtfile_id,pel_psmt_files.psmtfile_name,pel_psmt_files.psmtfile_type,pel_psmt_files.`status`,
+																														pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
+																														Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker'";
+																					$getfiles = mysqli_query_ported($query_getfiles, $connect) or die(mysqli_error($connect));
+																					$row_getfiles = mysqli_fetch_assoc($getfiles);
+																					$totalRows_getfiles = mysqli_num_rows($getfiles);
+																					do {
+																						?>
+																							<tr>
+																								<td bgcolor="#FFFFFF"><strong><?php echo $row_getfiles['psmtfile_type']; ?></strong></td>
+																								<td bgcolor="#FFFFFF"><a href="<?php echo $row_getfiles['psmtfile_name']; ?>" target="_blank"><?php echo $row_getfiles['psmtfile_name']; ?> </a></td>
+																							</tr>
+																						<?php
+																					} while ($row_getfiles = mysqli_fetch_assoc($getfiles));
 																				?>
-																					<tr>
-																						<td bgcolor="#FFFFFF"><strong><?php echo $row_getfiles['psmtfile_type']; ?></strong></td>
-																						<td bgcolor="#FFFFFF"><a href="<?php echo $row_getfiles['psmtfile_name']; ?>" target="_blank"><?php echo $row_getfiles['psmtfile_name']; ?> </a></td>
-																					</tr>
-
-																				<?php
-																				} while ($row_getfiles = mysqli_fetch_assoc($getfiles)); ?>
-
 																			</table>
-
-
 																		</div>
 																		<div class="modal-footer no-margin-top">
 																			<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 																				<i class="ace-icon fa fa-times"></i>
 																				Close </button>
-
-
 																		</div>
 																	</div>
 																</div>
-
 															</div><!-- PAGE CONTENT ENDS -->
 														</td>
 													</tr>
@@ -631,30 +581,20 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 																		NOTIFY CUSTOMER
 																	</div>
 																</div>
-
-
-
 																<div class="modal-body no-padding">
 																	<form class="form-horizontal" ENCTYPE='multipart/form-data' action='<?php echo $_SERVER["PHP_SELF"]; ?>' method='post'>
 																		<input type="hidden" name="ID" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['request_id']; ?>" />
-
 																		<input type="hidden" name="client_id" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['client_id']; ?>" />
-
 																		<input type="hidden" name="notify_by" class="col-xs-10 col-sm-5" value="<?php echo $_SESSION['MM_full_names']; ?>" />
 																		<input type="hidden" name="notify_date" class="col-xs-10 col-sm-5" value="<?php echo date('Y-m-d h:i:s'); ?>" />
-
 																		<input type="hidden" name="status" class="col-xs-10 col-sm-5" value="11" />
-
 																		<br />
 																		<div class="space-10"></div>
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-pass1">Data Set Name</label>
 																		<input type="hidden" name="bg_dataset_name" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['bg_dataset_name']; ?>" />
-
 																		<div class="col-sm-8">
 																			<?php echo $row_getallsearches['bg_dataset_name']; ?>
 																		</div>
-
-
 																		<br />
 																		<div class="space-10"></div>
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-pass1">Package</label> <input type="hidden" name="request_plan" class="col-xs-10 col-sm-5" value="<?php echo $row_getallsearches['request_plan']; ?>" />
@@ -662,7 +602,6 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 																		<div class="col-sm-8">
 																			<?php echo $row_getallsearches['request_plan']; ?>
 																		</div>
-
 
 																		<br />
 																		<div class="space-10"></div>
@@ -672,17 +611,13 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 																			<?php echo $row_getallsearches['request_ref_number']; ?>
 																		</div>
 
-
 																		<br />
 																		<div class="space-10"></div>
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-pass1">Upload File<span class="style1"></span></label>
 
 																		<div class="col-sm-8"><span id="sprytextfield1">
-																				<input class="col-xs-10 col-sm-5" id="id-input-file-2" name="id-input-file-2" type="file" />
-																				<span class="textfieldRequiredMsg">*</span></span></div>
-
-
-
+																			<input class="col-xs-10 col-sm-5" id="id-input-file-2" name="id-input-file-2" type="file" />
+																			<span class="textfieldRequiredMsg">*</span></span></div>
 																		<br />
 																		<div class="space-10"></div>
 
@@ -693,7 +628,6 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 																					<i class="ace-icon fa fa-check bigger-110"></i>
 																					Save
 																				</button>
-
 																				   
 																				<button class="btn" type="reset">
 																					<i class="ace-icon fa fa-undo bigger-110"></i>
@@ -708,23 +642,16 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 																	<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 																		<i class="ace-icon fa fa-times"></i>
 																		Close </button>
-
-
 																</div>
 															</div>
 														</div>
-
 													</div>
-
 												<?php } while ($row_getallsearches = mysqli_fetch_assoc($getallsearches)); ?>
-
-
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
-
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.page-content -->
@@ -738,16 +665,14 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 					<span class="bigger-120">
 						<span class="blue bolder">Peleza</span>
 						Admin &copy; 2018 </span>
-
 					&nbsp;&nbsp;
 				</div>
-
 				<!-- /section:basics/footer -->
 			</div>
 		</div>
-
 		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a>
+			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+		</a>
 	</div><!-- /.main-container -->
 
 	<!-- basic scripts -->

@@ -294,7 +294,24 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "editclient")) {
     );
     //exit ();
     if ($connect->query($insertSQL)) {
+        $get_user_id_sql = "SELECT client_id FROM pel_client WHERE client_login_username = '".$_POST['client_email_address']."'";
+        $user = $connect->query($get_user_id_sql);
+        $user_id = mysqli_fetch_assoc($user);
+        
+        $get_permissions_sql = "SELECT id FROM main_permissions";
+        $permissions = $connect->query($get_permissions_sql);
+        $permission = mysqli_fetch_assoc($permissions);
+
+        do {
+            $insert_permissions_sql = sprintf("INSERT INTO main_userhaspermission (permission_id, user_id) VALUES (%d, %d)",
+                $permission['id'],
+                $user_id['client_id']
+            );
+            $connect->query($insert_permissions_sql);
+        } while ($permission = mysqli_fetch_assoc($permissions));
+
         $auth_mailer->send_mail($_POST['client_first_name'].' '.$_POST['client_last_name'], $_POST['client_email_address'], $usr_password, $account_type, $client_company_id);
+        
         header("Location: " . $updateGoTo);
     } else {
         echo 'NOT';
