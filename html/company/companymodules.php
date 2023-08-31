@@ -65,25 +65,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
     <!-- ace styles -->
     <link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="../../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
-        <![endif]-->
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="../../assets/css/ace-ie.css"/>
-        <![endif]-->
-
-    <!-- inline styles related to this page -->
-
     <!-- ace settings handler -->
     <script src="../../assets/js/ace-extra.js"></script>
-
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-    <!--[if lte IE 8]>
-        <script src="../assets/js/html5shiv.js"></script>
-        <script src="../assets/js/respond.js"></script>
-        <![endif]-->
 </head>
 
 <body class="no-skin">
@@ -106,15 +89,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
         </script>
 
         <!-- #section:basics/sidebar -->
-        <div id="sidebar" class="sidebar                  responsive">
+        <div id="sidebar" class="sidebar responsive">
             <script type="text/javascript">
                 try {
                     ace.settings.check('sidebar', 'fixed')
                 } catch (e) {}
             </script>
             <?php include('../sidebarmenu2.php'); ?>
-
-
             <!-- #section:basics/sidebar.layout.minimize -->
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -126,7 +107,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
                     ace.settings.check('sidebar', 'collapsed')
                 } catch (e) {}
             </script>
-
         </div>
 
         <!-- /section:basics/sidebar -->
@@ -145,78 +125,36 @@ if (isset($_SERVER['QUERY_STRING'])) {
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Home</a>
                         </li>
-
                         <li>
                             <a href="#">Peleza Modules</a>
                         </li>
-
                         <li>
                             <a href="#">Company</a>
                         </li>
-
                         <li class="active">Data Entry Management</li>
                     </ul><!-- /.breadcrumb -->
 
                     <!-- #section:basics/content.searchbox -->
                     <div class="nav-search" id="nav-search">
-                        <!-- <form class="form-search">
-                            <span class="input-icon">
-                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                                <i class="ace-icon fa fa-search nav-search-icon"></i>								</span>
-                        </form> -->
                     </div><!-- /.nav-search -->
 
                     <!-- /section:basics/content.searchbox -->
                 </div>
-
                 <!-- /section:basics/content.breadcrumbs -->
                 <div class="page-content">
-
-
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <!--
-                            <div class="hr hr-18 dotted hr-double"></div>
-
-                    <h4 class="pink">
-                                <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                                <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>								</h4>
-
-                            <div class="hr hr-18 dotted hr-double"></div>
--->
                             <div class="row">
                                 <div class="col-xs-12">
-
-
-                                    <h3 align="left" class="header smaller lighter blue">To Edit and Enter Company
-                                        Registration Data, Enter Request Ref Number (Request Ref Number/Company
-                                        Name)</h3>
+                                    <h3 align="left" class="header smaller lighter blue">To Edit and Enter Company Registration Data, Enter Request Ref Number (Request Ref Number/Company Name)</h3>
                                 </div>
-                                <!--   <div  class="col-xs-6">
-                               <h3 align="right" class="header smaller lighter blue">
-                           <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                           <a href="educationupload.php">
-                         <button class="btn btn-white btn-info btn-bold">
-                                       <i class="ace-icon bigger-120 green"></i>New Education Data
-</button></a>
-
-
-                                        </h3>
-
-
-
-
-</div>-->
                                 <form class="form-horizontal" name="forminst" action="<?php echo $editFormAction; ?>" method="POST">
-
                                     <div class="form-group">
-                                        <label class="col-sm-5 control-label no-padding-right" for="form-field-1">Request
-                                            Ref/Company Request Names:</label>
+                                        <label class="col-sm-5 control-label no-padding-right" for="form-field-1">Request Ref/Company Request Names:</label>
 
                                         <div class="col-sm-5"><span id="sprytextfield1">
-
-                                                <input type="text" id="search_ref" name="search_ref" class="col-xs-10 col-sm-8" /> <span class="textfieldRequiredMsg">*</span></span>
+                                            <input type="text" id="search_ref" name="search_ref" class="col-xs-10 col-sm-8" /> <span class="textfieldRequiredMsg">*</span></span>
                                         </div>
                                     </div>
                                     <!-- /section:elements.form -->
@@ -224,174 +162,125 @@ if (isset($_SERVER['QUERY_STRING'])) {
                                     <div class="space-4"></div>
                                     <div class="clearfix form-actions">
                                         <div class="col-md-offset-3 col-md-9">
-
                                             <button onClick="submit" type="submit" value="submit" class="btn btn-info">
                                                 <i class="ace-icon fa fa-check bigger-110"></i>
                                                 Submit
                                             </button>
-
-                                                 
+                                            
                                             <button class="btn" type="reset">
                                                 <i class="ace-icon fa fa-undo bigger-110"></i>
                                                 Reset
                                             </button>
                                         </div>
                                     </div>
-
                                     <input type="hidden" name="MM_insert" value="forminst">
-
                                 </form>
 
                                 <?php
-
-
-                                if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "forminst")) {
-
-                                    mysqli_select_db($connect, $database_connect);
-
-                                    $search_ref = strtoupper($_POST['search_ref']);
-
-                                    $queryitem = "";
-                                    $str = addslashes($search_ref);
-                                    $words = explode(" ", $str);
-                                    $spaces = array();
-                                    $others = array();
-                                    foreach ($words as $word) {
-                                        if ($word == ' ' || $word == '') {
-                                        } else {
-                                            $queryitem .= " AND (bg_dataset_name LIKE '%" . $word . "%' OR request_ref_number  LIKE  '%" . $word . "%' )";
-                                        }
-                                    }
-
-                                    // $query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77','00') and verification_status IN ('44','22','33','00') AND request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
-                                    $query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77','00') AND verification_status IN ('44','22','33','00') AND  request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
-
-                                    $getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
-                                    $row_getstudent = mysqli_fetch_assoc($getstudent);
-                                    $totalRows_getstudent = mysqli_num_rows($getstudent);
-
-                                    if ($totalRows_getstudent > 0) {
-                                ?>
-
-                                        <h3 align="left" class=" smaller lighter blue"><strong>SEARCH: </strong> <?php echo $search_ref; ?></h3>
-                                        <div class="clearfix">
-                                            <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            Results for "Request for Company Details Searched"
-                                        </div>
-
-                                        <!-- div.table-responsive -->
-
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div>
-                                            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <!--<label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>															</label>-->
-                                                            NO:
-
-                                                        </th>
-                                                        <th>Dataset Name</th>
-                                                        <th>Client Name</th>
-
-                                                        <th>Request Package</th>
-                                                        <th>Request Date</th>
-
-                                                        <th class="hidden-480">Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-
-                                                    $x = 1;
-                                                    do { ?>
-                                                        <tr>
-                                                            <td class="center">
-                                                                <!--	<label class="pos-rel">
-                                                               <input type="checkbox" class="ace" />
-                                                               <span class="lbl"></span>	--> <?php echo $x++; ?> </label>
-                                                            </td>
-
-                                                            <td>
-                                                                <a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a>
-                                                            </td>
-                                                            <td><?php echo $row_getstudent['client_name']; ?></td>
-
-                                                            <td><?php echo $row_getstudent['request_plan']; ?></td>
-                                                            <td><?php echo $row_getstudent['request_date']; ?></td>
-
-                                                            <td class="hidden-480"> <?php
-
-                                                                                    if ($row_getstudent['verification_status'] == '44') {
-                                                                                    ?>
-
-                                                                    <span class="label label-sm label-warning">In Progress</span>
-                                                                <?php
-                                                                                    }
-                                                                                    if ($row_getstudent['verification_status'] == '00') {
-                                                                ?>
-                                                                    <span class="label label-sm label-purple">New Request</span>
-                                                                <?php
-                                                                                    }
-                                                                                    if ($row_getstudent['verification_status'] == '11') {
-                                                                ?>
-                                                                    <span class="label label-sm label-success">Final</span>
-                                                                <?php
-                                                                                    }
-                                                                                    if ($row_getstudent['verification_status'] == '22') {
-                                                                ?>
-                                                                    <span class="label label-sm label-warning">UnReviewed</span>
-                                                                <?php
-                                                                                    }
-                                                                                    if ($row_getstudent['verification_status'] == '33') {
-                                                                ?>
-                                                                    <span class="label label-sm label-primary">Interim Data</span>
-                                                                <?php
-                                                                                    }
-
-                                                                ?>
-                                                            </td>
-
-
-                                                            <td>
-                                                                <?php
-
-                                                                if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata)) {
-
-                                                                ?>
-                                                                    <a href="companydataentry.php?request_id=<?php echo $row_getstudent['request_id']; ?>" class="orange">
-                                                                        <button class="btn btn-xs btn-info">
-                                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                                        </button>
-                                                                    </a>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                    <?php } while ($row_getstudent = mysqli_fetch_assoc($getstudent)); ?>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div> <?php
+                                    if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "forminst")) {
+                                        mysqli_select_db($connect, $database_connect);
+                                        $search_ref = strtoupper($_POST['search_ref']);
+                                        $queryitem = "";
+                                        $str = addslashes($search_ref);
+                                        $words = explode(" ", $str);
+                                        $spaces = array();
+                                        $others = array();
+                                        foreach ($words as $word) {
+                                            if ($word == ' ' || $word == '') {
                                             } else {
-                                                echo '<div class="w-100">
-                                                    <p class="text-center text-muted">No results found</p>
-                                                </div>';
+                                                $queryitem .= " AND (bg_dataset_name LIKE '%" . $word . "%' OR request_ref_number  LIKE  '%" . $word . "%' )";
                                             }
                                         }
-                                                ?>
-
+                                        $query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77','00') AND verification_status IN ('44','22','33','00') AND  request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
+                                        $getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
+                                        $row_getstudent = mysqli_fetch_assoc($getstudent);
+                                        $totalRows_getstudent = mysqli_num_rows($getstudent);
+                                        if ($totalRows_getstudent > 0) {
+                                            ?>
+                                                <h3 align="left" class=" smaller lighter blue"><strong>SEARCH: </strong> <?php echo $search_ref; ?></h3>
+                                                <div class="clearfix">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <div class="table-header">
+                                                    Results for "Request for Company Details Searched"
+                                                </div>
+                                                <div>
+                                                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="center">
+                                                                    NO:
+                                                                </th>
+                                                                <th>Dataset Name</th>
+                                                                <th>Client Name</th>
+                                                                <th>Request Package</th>
+                                                                <th>Request Date</th>
+                                                                <th class="hidden-480">Status</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $x = 1;
+                                                            do { ?>
+                                                                <tr>
+                                                                    <td class="center"><?php echo $x++; ?></td>
+                                                                    <td><a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a></td>
+                                                                    <td><?php echo $row_getstudent['client_name']; ?></td>
+                                                                    <td><?php echo $row_getstudent['request_plan']; ?></td>
+                                                                    <td><?php echo date('Y m d H:i', strtotime($row_getstudent['request_date'])); ?></td>
+                                                                    <td class="hidden-480"> 
+                                                                        <?php 
+                                                                            if($row_getstudent['verification_status']=='44'){
+                                                                                ?>
+                                                                                    <span class="label label-sm label-warning">In Progress</span>	
+                                                                                <?php
+                                                                            }
+                                                                            if($row_getstudent['verification_status']=='00') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-purple">New Request</span>	
+                                                                                <?php
+                                                                            }	
+                                                                            if($row_getstudent['verification_status']=='11') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-success">Final</span>	
+                                                                                <?php
+                                                                            }
+                                                                            if($row_getstudent['verification_status']=='22') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-warning">UnReviewed</span>	
+                                                                                <?php
+                                                                            }	
+                                                                                if($row_getstudent['verification_status']=='33') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-primary">Interim Data</span>	
+                                                                                <?php
+                                                                            }
+                                                                        ?>    
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php
+                                                                            if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata)) {
+                                                                                ?>                               
+                                                                                    <a href="companydataentry.php?request_id=<?php echo $row_getstudent['request_id']; ?>" class="orange"><button class="btn btn-xs btn-info">  
+                                                                                        <i class="ace-icon fa fa-pencil bigger-120"></i></button>
+                                                                                    </a>  
+                                                                                <?php
+                                                                            }
+                                                                        ?>                                                                                             
+                                                                    </td>
+                                                                </tr>
+                                                            <?php } while ($row_getstudent = mysqli_fetch_assoc($getstudent)); ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            <?php
+                                        } else {
+                                            echo '<div class="w-100"><p class="text-center text-muted">No results found</p></div>';
+                                        }
+                                    }
+                                ?>
                             </div>
-
-
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.page-content -->

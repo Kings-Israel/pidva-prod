@@ -870,7 +870,6 @@ if (!isset($_SESSION)) {
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8">
-    <title>Dashboard - Peleza Admin</title>
     <meta name="description" content="overview &amp; stats">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://pidva.africa/assets/css/bootstrap.css">

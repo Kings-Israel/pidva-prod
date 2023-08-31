@@ -1,5 +1,7 @@
-<?php require_once('../../Connections/connect.php'); ?>
 <?php
+require_once('../../Connections/connect.php'); 
+require_once '../../v1/Notifier.php';
+
 if (!function_exists("GetSQLValueString")) {
     function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
     {
@@ -28,7 +30,6 @@ if (!function_exists("GetSQLValueString")) {
         return $theValue;
     }
 }
-
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -111,7 +112,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
     mysqli_query_ported($insertSQL, $connect);
     $colname_getrequestid = $_POST['request_id'];
 
-//echo $Result1 = mysqli_query_ported($insertSQL, $connect)or die(mysqli_error($connect));
+    //echo $Result1 = mysqli_query_ported($insertSQL, $connect)or die(mysqli_error($connect));
     if (mysqli_error($connect)) {
         $errorcode = '<div class="alert alert-danger">
 											<button type="button" class="close" data-dismiss="alert">
@@ -129,15 +130,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
 
     } else {
         $updateGoTo = "companyregistrationview.php?request_id=$colname_getrequestid";
-        /* if (isset($_SERVER['QUERY_STRING'])) {
-           $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-           $updateGoTo .= $_SERVER['QUERY_STRING'];
-         }*/
         header(sprintf("Location: %s", $updateGoTo));
     }
 }
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -165,16 +163,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
 
         <!-- ace styles -->
         <link rel="stylesheet" href="../../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
-
-        <!--[if lte IE 9]>
-        <link rel="stylesheet" href="../../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
-        <![endif]-->
-
-        <!--[if lte IE 9]>
-        <link rel="stylesheet" href="../../assets/css/ace-ie.css"/>
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
 
         <!-- ace settings handler -->
         <script src="../../assets/js/ace-extra.js"></script>
@@ -209,7 +197,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
         </script>
 
         <!-- #section:basics/sidebar -->
-        <div id="sidebar" class="sidebar                  responsive">
+        <div id="sidebar" class="sidebar responsive">
             <script type="text/javascript">
                 try {
                     ace.settings.check('sidebar', 'fixed')
@@ -217,12 +205,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                 }
             </script>
             <?php include('../sidebarmenu2.php'); ?>
-
-
             <!-- #section:basics/sidebar.layout.minimize -->
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
-                   data-icon2="ace-icon fa fa-angle-double-right"></i></div>
+                   data-icon2="ace-icon fa fa-angle-double-right">
+                </i>
+            </div>
 
             <!-- /section:basics/sidebar.layout.minimize -->
             <script type="text/javascript">
@@ -231,7 +219,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                 } catch (e) {
                 }
             </script>
-
         </div>
 
         <!-- /section:basics/sidebar -->
@@ -249,24 +236,19 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="#">Home</a></li>
-
+                            <a href="#">Home</a>
+                        </li>
                         <li>
-                            <a href="#">Peleza Modules</a></li>
-
+                            <a href="#">Peleza Modules</a>
+                        </li>
                         <li>
-                            <a href="#">Individual</a></li>
-
+                            <a href="#">Individual</a>
+                        </li>
                         <li class="active">Individual Data Entry</li>
                     </ul><!-- /.breadcrumb -->
 
                     <!-- #section:basics/content.searchbox -->
                     <div class="nav-search" id="nav-search">
-                        <!-- <form class="form-search">
-                            <span class="input-icon">
-                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                                <i class="ace-icon fa fa-search nav-search-icon"></i>								</span>
-                        </form> -->
                     </div><!-- /.nav-search -->
 
                     <!-- /section:basics/content.searchbox -->
@@ -274,45 +256,14 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
 
                 <!-- /section:basics/content.breadcrumbs -->
                 <div class="page-content">
-
-
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <!--
-                            <div class="hr hr-18 dotted hr-double"></div>
-
-                    <h4 class="pink">
-                                <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                                <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>								</h4>
-
-                            <div class="hr hr-18 dotted hr-double"></div>
--->
                             <div class="row">
                                 <div class="col-xs-12">
-
-
-                                    <h3 align="left" class="header smaller lighter blue">Add Individual Data
-                                        Details</h3>
+                                    <h3 align="left" class="header smaller lighter blue">Add Individual Data Details</h3>
                                 </div>
-                                <!--   <div  class="col-xs-6">
-                               <h3 align="right" class="header smaller lighter blue">
-                           <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                           <a href="educationupload.php">
-                         <button class="btn btn-white btn-info btn-bold">
-                                       <i class="ace-icon bigger-120 green"></i>New Education Data
-</button></a>
-
-
-                                        </h3>
-
-
-
-
-</div>-->
                                 <?php
-
-
                                 $query_getstudent = "SELECT * FROM pel_psmt_request Inner Join pel_client ON pel_client.client_id = pel_psmt_request.client_id WHERE request_id = " . $colname_getrequestid . "";
                                 $getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
                                 $row_getstudent = mysqli_fetch_assoc($getstudent);
@@ -327,34 +278,33 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
 
                                 mysqli_select_db($connect, $database_connect);
                                 $query_getgetprogress_update = sprintf("SELECT
-pel_psmt_request_modules.`status`
-FROM
-pel_module
-Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id WHERE pel_psmt_request_modules.request_ref_number = %s AND pel_psmt_request_modules.status = '11'", GetSQLValueString($refnumber2, "text"));
+                                                                        pel_psmt_request_modules.`status`
+                                                                        FROM
+                                                                        pel_module
+                                                                        Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id
+                                                                        WHERE pel_psmt_request_modules.request_ref_number = %s AND pel_psmt_request_modules.status = '11'", GetSQLValueString($refnumber2, "text"));
                                 $getgetprogress_update = mysqli_query_ported($query_getgetprogress_update, $connect) or die(mysqli_error($connect));
                                 $row_getgetprogress_update = mysqli_fetch_assoc($getgetprogress_update);
                                 $totalRows_getgetprogress_update = mysqli_num_rows($getgetprogress_update);
 
                                 if ($totalRows_getgetprogress_update > 0) {
-
                                     $deleteSQL2 = sprintf("UPDATE pel_psmt_request SET status='33', verification_status='33' WHERE request_ref_number=%s",
                                         GetSQLValueString($refnumber2, "text"));
                                     mysqli_select_db($connect, $database_connect);
                                     $Result2 = mysqli_query_ported($deleteSQL2, $connect) or die(mysqli_error($connect));
                                 }
 
-
                                 $query_getgetprogress_update2 = sprintf("SELECT
-pel_psmt_request_modules.`status`
-FROM
-pel_module
-Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id WHERE pel_psmt_request_modules.request_ref_number = %s AND pel_psmt_request_modules.status = '00'", GetSQLValueString($refnumber2, "text"));
+                                                                        pel_psmt_request_modules.`status`
+                                                                        FROM
+                                                                        pel_module
+                                                                        Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id
+                                                                        WHERE pel_psmt_request_modules.request_ref_number = %s AND pel_psmt_request_modules.status = '00'", GetSQLValueString($refnumber2, "text"));
                                 $getgetprogress_update2 = mysqli_query_ported($query_getgetprogress_update2, $connect) or die(mysqli_error($connect));
                                 $row_getgetprogress_update2 = mysqli_fetch_assoc($getgetprogress_update2);
                                 $totalRows_getgetprogress_update2 = mysqli_num_rows($getgetprogress_update2);
 
                                 if ($totalRows_getgetprogress_update2 == 0) {
-
                                     $deleteSQL2 = sprintf("UPDATE pel_psmt_request SET status='11', verification_status='11', final_notify='11' WHERE request_ref_number=%s",
                                         GetSQLValueString($refnumber2, "text"));
                                     mysqli_select_db($connect, $database_connect);
@@ -369,11 +319,10 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                         $final_notify2 = $row_getstudent['final_notify'];
 
                                         require("../../PHPMailer/PHPMailer.php");
-
                                         require("../../PHPMailer/SMTP.php");
                                         require("../../PHPMailer/Exception.php");
 
-//$mail = new PHPMailer;
+                                        //$mail = new PHPMailer;
                                         $mail = new PHPMailer\PHPMailer\PHPMailer();
 
                                         $mail->isSMTP();
@@ -387,75 +336,75 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
 
                                         $mail->setFrom('admin@pidva.africa', 'PIDVA Administrator');
                                         $mail->addAddress($client_email_address2);
-//$mail->addAddress('omintolbert@gmail.com');   // Add a recipient
-//$mail->addCC('mwendemarita@gmail.com');
-//$mail->addBCC('omintolbert@gmail.com');
+                                        //$mail->addAddress('omintolbert@gmail.com');   // Add a recipient
+                                        //$mail->addCC('mwendemarita@gmail.com');
+                                        //$mail->addBCC('omintolbert@gmail.com');
 
                                         $mail->isHTML(true);  // Set email format to HTML
-//echo "<br/>";
+                                        //echo "<br/>";
                                         $bodyContent = '<table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
-  <tbody>
-    <tr valign="top">
-      <td>Hi ' . $client_first_name2 . ', <br />
-          <br />
-     Your BG request has been completed for the below candidate and results are currently in the portal. Please login to view full report.</td>
-    </tr>
-  </tbody>
-</table>
-<table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
-  <tbody>
-    <tr valign="top">
-      <td><br />
-       <br />NAME: <strong>' . $bg_dataset_name2 . '</strong> <br /><br /> REF NUMBER: <strong>' . $refnumber2 . '</strong> 
-        <br />
-      </td>
-    </tr>
-  </tbody>
-</table>
-<table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
-  <tbody>
-    <tr valign="top">
-      <td></td>
-    </tr>
-    <tr>
-      <td width="137"></td>
-      <td width="216" align="center"><table align="center">
-    <tr>
-        <td style="background-color: #c2d247;border-color: #c2d247;border: 2px solid #c2d247;padding: 10px;text-align: center;">
-            <a style="display: block;color: #094156;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="https://psmt.pidva.africa/" target="_blank">CHECK RESULTS</a>
-        </td>
-    </tr>
-</table></td>
-      <td width="137"></td>
-    </tr>
-  </tbody>
-</table>
-<table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
-  <tbody>
-    <tr valign="top">
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
-  <tbody>
-    <tr valign="top">
-      <td><br />
-       
-        <br />  You have received this mandatory email service  announcement to update you about important changes to your PSMT request.<br /><br />
-      </td>
-    </tr>
-    <tr>
-      <td width="100%">Sincerely,<br />
-        <strong>PSMT Administrator</strong> <br />
-          verify@peleza.com<br />
-     
-		copyright©2020.All rights reserved.PSMT.<br />
-          <br />
-      </td>
-    </tr>
-  </tbody>
-</table>';
+                                                            <tbody>
+                                                                <tr valign="top">
+                                                                <td>Hi ' . $client_first_name2 . ', <br />
+                                                                    <br />
+                                                                Your BG request has been completed for the below candidate and results are currently in the portal. Please login to view full report.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                            <table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr valign="top">
+                                                                <td><br />
+                                                                <br />NAME: <strong>' . $bg_dataset_name2 . '</strong> <br /><br /> REF NUMBER: <strong>' . $refnumber2 . '</strong> 
+                                                                    <br />
+                                                                </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                            <table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr valign="top">
+                                                                <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <td width="137"></td>
+                                                                <td width="216" align="center"><table align="center">
+                                                                <tr>
+                                                                    <td style="background-color: #c2d247;border-color: #c2d247;border: 2px solid #c2d247;padding: 10px;text-align: center;">
+                                                                        <a style="display: block;color: #094156;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="https://psmt.pidva.africa/" target="_blank">CHECK RESULTS</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table></td>
+                                                                <td width="137"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                            <table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr valign="top">
+                                                                <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                            <table width="530" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr valign="top">
+                                                                <td><br />
+                                                                
+                                                                    <br />  You have received this mandatory email service  announcement to update you about important changes to your PSMT request.<br /><br />
+                                                                </td>
+                                                                </tr>
+                                                                <tr>
+                                                                <td width="100%">Sincerely,<br />
+                                                                    <strong>PSMT Administrator</strong> <br />
+                                                                    verify@peleza.com<br />
+                                                                
+                                                                    copyright©2020.All rights reserved.PSMT.<br />
+                                                                    <br />
+                                                                </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>';
 
 
                                         $mail->Subject = 'Do Not Reply: REQUEST FINAL NOTIFICATION';
@@ -466,104 +415,109 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                             echo 'Mailer Error: ' . $mail->ErrorInfo;
                                         } else {
                                             //  echo 'Message has been sent';
-
-
                                         }
                                     }
-
+                                } else {
+                                    if ($row_getstudent['status'] == '00') {
+                                        $deleteSQL2 = sprintf(
+                                            "UPDATE pel_psmt_request SET status='44', verification_status='44' WHERE request_ref_number=%s",
+                                            GetSQLValueString($refnumber2, 'text')
+                                        );
+                                        mysqli_select_db($connect, $database_connect);
+                                        ($Result2 = mysqli_query_ported($deleteSQL2, $connect)) or die(mysqli_error($connect));
+                                        $mysqli_affected_rows = mysqli_affected_rows($connect);
+    
+                                        $reference_number = $refnumber2;
+                                        $progressStatus = 'In Progress';
+                                        $progressPercentage = 44;
+                                        $description =
+                                            'status updates at ' .
+                                            date('Y-m-d H:i:s');
+    
+                                        if ($mysqli_affected_rows > 0) {
+                                            $notify = new Notifier();
+                                            $notify->notify(
+                                                $reference_number,
+                                                $progressStatus,
+                                                $progressPercentage,
+                                                $description
+                                            );
+                                        }
+                                    }
                                 }
-
-
                                 ?>
 
-                                <h3 align="left" class=" smaller lighter blue"><strong>SEARCH
-                                        REF: </strong> <?php echo $row_getstudent['request_ref_number']; ?></h3>
+                                <h3 align="left" class=" smaller lighter blue"><strong>SEARCH REF: </strong> <?php echo $row_getstudent['request_ref_number']; ?></h3>
 
                                 <div>
                                     <table id="simple-table" class="table table-striped table-bordered table-hover">
                                         <thead>
-                                        <tr>
-
-
-                                            <th>Request Package</th>
-                                            <th>Request Date</th>
-
-                                            <th>Client Name</th>
-                                            <th>Company Name</th>
-
-
-                                            <th class="hidden-480">Data Set Type</th>
-
-                                        </tr>
+                                            <tr>
+                                                <th>Request Package</th>
+                                                <th>Request Date</th>
+                                                <th>Client Name</th>
+                                                <th>Company Name</th>
+                                                <th class="hidden-480">Data Set Type</th>
+                                            </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td><?php echo $row_getstudent['request_plan']; ?></td>
-                                            <td><?php echo $row_getstudent['request_date']; ?></td>
-                                            <td><?php echo $row_getstudent['client_name']; ?></td>
-                                            <td><?php echo $row_getstudent['company_name']; ?></td>
-                                            <td><?php echo $row_getstudent['dataset_name']; ?></td>
-
-
-                                        </tr>
-
-
+                                            <tr>
+                                                <td><?php echo $row_getstudent['request_plan']; ?></td>
+                                                <td><?php echo date('Y m d H:i', strtotime($row_getstudent['request_date'])); ?></td>
+                                                <td><?php echo $row_getstudent['client_name']; ?></td>
+                                                <td><?php echo $row_getstudent['company_name']; ?></td>
+                                                <td><?php echo $row_getstudent['dataset_name']; ?></td>
+                                            </tr>
                                         </tbody>
 
                                         <thead>
                                         <tr>
-
                                             <th>Dataset Name</th>
                                             <th>Country</th>
-
                                             <th>Email Address</th>
                                             <th>Identity Number</th>
-
                                             <th class="hidden-480">Status</th>
-
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a></td>
+                                                <a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a>
+                                            </td>
                                             <td><?php echo $row_getstudent['dataset_citizenship']; ?></td>
-
                                             <td><?php echo $row_getstudent['bg_dataset_email']; ?></td>
                                             <td><?php echo $row_getstudent['bg_dataset_idnumber']; ?></td>
 
                                             <td class="hidden-480">  <?php
-
                                                 if ($row_getstudent['verification_status'] == '44') {
                                                     ?>
-
-                                                    <span class="label label-sm label-warning">In Progress</span>
+                                                        <span class="label label-sm label-warning">In Progress</span>
                                                     <?php
                                                 }
                                                 if ($row_getstudent['verification_status'] == '00') {
                                                     ?>
-                                                    <span class="label label-sm label-purple">New Request</span>
+                                                        <span class="label label-sm label-purple">New Request</span>
                                                     <?php
                                                 }
                                                 if ($row_getstudent['verification_status'] == '11') {
                                                     ?>
-                                                    <span class="label label-sm label-success">Final</span>
+                                                        <span class="label label-sm label-success">Final</span>
                                                     <?php
                                                 }
                                                 if ($row_getstudent['verification_status'] == '22') {
                                                     ?>
-                                                    <span class="label label-sm label-warning">Not Reviewed</span>
+                                                        <span class="label label-sm label-warning">Not Reviewed</span>
                                                     <?php
                                                 }
                                                 if ($row_getstudent['verification_status'] == '33') {
                                                     ?>
-                                                    <span class="label label-sm label-primary">Interim Data</span>
+                                                        <span class="label label-sm label-primary">Interim Data</span>
                                                     <?php
                                                 }
-                                                ?>    </td>
-
+                                                ?>
+                                            </td>
                                         </tr>
                                         </tbody>
 
@@ -571,7 +525,6 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                         <tr>
                                             <th>Locked By</th>
                                             <th>Date Locked</th>
-
                                             <th>Last Date Update</th>
                                             <th>Report Adverse Status</th>
                                             <th>Set Adverse Status</th>
@@ -628,26 +581,19 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                                     $Result1 = mysqli_query_ported($deleteSQL, $connect) or die(mysqli_error($connect));
                                                     if (mysqli_error($connect)) {
                                                         $errorcode = '<div class="alert alert-danger">
-											<button type="button" class="close" data-dismiss="alert">
-												<i class="ace-icon fa fa-times"></i>
-											</button>
-
-											<strong>
-												<i class="ace-icon fa fa-times"></i>
-												Oh snap!
-											</strong>
-
-										 Details of the data notes havenot been blocked
-											<br />
-										</div>';
+                                                                        <button type="button" class="close" data-dismiss="alert">
+                                                                            <i class="ace-icon fa fa-times"></i>
+                                                                        </button>
+                                                                        <strong>
+                                                                            <i class="ace-icon fa fa-times"></i>
+                                                                            Oh snap!
+                                                                        </strong>
+                                                                            Details of the data notes havenot been blocked
+                                                                        <br />
+                                                                    </div>';
 
                                                     } else {
                                                         $updateGoTo = "individualdataentry.php?request_id=$colname_getrequestid";
-                                                        /* if (isset($_SERVER['QUERY_STRING'])) {
-                                                           $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-                                                           $updateGoTo .= $_SERVER['QUERY_STRING'];
-                                                         }*/
-                                                        // header(sprintf("Location: %s", $updateGoTo));
 
                                                         ?>
                                                         <meta http-equiv="Refresh"
@@ -679,21 +625,19 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                         <tr>
 
                                             <td width="50%">
-                                                <table id="simple-table"
-                                                       class="table  table-bordered table-hover"> <?php
-
+                                                <table id="simple-table"class="table  table-bordered table-hover">
+                                                    <?php
                                                     $refnumber = $row_getstudent['request_ref_number'];
-
                                                     mysqli_select_db($connect, $database_connect);
                                                     $query_getprogress2 = sprintf("SELECT
-pel_module.module_role,
-pel_psmt_request_modules.`status`,
-pel_psmt_request_modules.request_ref_number,
-pel_psmt_request_modules.module_name,
-pel_psmt_request_modules.module_id
-FROM
-pel_module
-Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id WHERE pel_psmt_request_modules.request_ref_number = %s ORDER BY pel_psmt_request_modules.`status` DESC", GetSQLValueString($refnumber, "text"));
+                                                                                    pel_module.module_role,
+                                                                                    pel_psmt_request_modules.`status`,
+                                                                                    pel_psmt_request_modules.request_ref_number,
+                                                                                    pel_psmt_request_modules.module_name,
+                                                                                    pel_psmt_request_modules.module_id
+                                                                                    FROM
+                                                                                    pel_module
+                                                                                    Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_module.module_id WHERE pel_psmt_request_modules.request_ref_number = %s ORDER BY pel_psmt_request_modules.`status` DESC", GetSQLValueString($refnumber, "text"));
                                                     $getprogress2 = mysqli_query_ported($query_getprogress2, $connect) or die(mysqli_error($connect));
                                                     $row_getprogress2 = mysqli_fetch_assoc($getprogress2);
                                                     $totalRows_getprogress2 = mysqli_num_rows($getprogress2);
@@ -756,15 +700,14 @@ Inner Join pel_psmt_request_modules ON pel_psmt_request_modules.module_id = pel_
                                                 </table>
                                             </td>
                                             <td width="">
-                                                <table id="simple-table"
-                                                       class="table  table-bordered table-hover"> <?php
-
+                                                <table id="simple-table" class="table  table-bordered table-hover">
+                                                    <?php
                                                     $filetracker = $row_getstudent['file_tracker'];
 
                                                     mysqli_select_db($connect, $database_connect);
                                                     $query_getfiles = "SELECT pel_psmt_request.request_id, pel_psmt_files.psmtfile_filetoken,pel_psmt_files.psmtfile_id,pel_psmt_files.psmtfile_name,pel_psmt_files.psmtfile_type,pel_psmt_files.`status`,
-pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
-Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker' and pel_psmt_files.data_type='file'";
+                                                                        pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
+                                                                        Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker' and pel_psmt_files.data_type='file'";
                                                     $getfiles = mysqli_query_ported($query_getfiles, $connect) or die(mysqli_error($connect));
                                                     $row_getfiles = mysqli_fetch_assoc($getfiles);
                                                     $totalRows_getfiles = mysqli_num_rows($getfiles);
@@ -774,12 +717,13 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $i++; ?>.</td>
-                                                            <td><a href="<?php echo $row_getfiles['psmtfile_name']; ?>"
+                                                            <td>
+                                                                <a href="<?php echo $row_getfiles['psmtfile_name']; ?>"
                                                                    target="_blank">
                                                                     <strong><?php echo $row_getfiles['psmtfile_type']; ?></strong>
-                                                                </a></td>
+                                                                </a>
+                                                            </td>
                                                         </tr>
-
                                                         <?php
                                                     } while ($row_getfiles = mysqli_fetch_assoc($getfiles)); ?>
                                                 </table>
@@ -790,8 +734,8 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
                                                 mysqli_select_db($connect, $database_connect);
 
                                                 $query_getfiles2 = "SELECT pel_psmt_request.request_id, pel_psmt_files.psmtfile_filetoken,pel_psmt_files.psmtfile_id,pel_psmt_files.psmtfile_name,pel_psmt_files.psmtfile_type,pel_psmt_files.`status`,
-pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
-Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker' and pel_psmt_files.data_type='text'";
+                                                                        pel_psmt_files.request_id,pel_psmt_files.client_id FROM pel_psmt_request
+                                                                        Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmtfile_filetoken WHERE pel_psmt_request.file_tracker = '$filetracker' and pel_psmt_files.data_type='text'";
 
                                                 $getfiles2 = mysqli_query_ported($query_getfiles2, $connect) or die(mysqli_error($connect));
 
@@ -816,33 +760,20 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
                                                             <?php
                                                         } while ($row_getfiles2 = mysqli_fetch_assoc($getfiles2)); ?>
                                                     </table>
-
                                                     <?php
                                                 }
                                                 ?>
-
-
                                             </td>
-
-
                                         </tr>
                                         </tbody>
                                     </table>
-
-
                                     <div class="col-xs-12">
                                         <?php
-
                                         echo $errorcode;
                                         ?>
                                     </div>
-
-
                                 </div>
-
                             </div>
-
-
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.page-content -->
@@ -859,13 +790,13 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
 
                     &nbsp;&nbsp;
                 </div>
-
                 <!-- /section:basics/footer -->
             </div>
         </div>
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a></div><!-- /.main-container -->
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a>
+        </div><!-- /.main-container -->
     <!-- basic scripts -->
 
     <!--[if !IE]> -->
@@ -1191,13 +1122,6 @@ Inner Join pel_psmt_files ON pel_psmt_request.file_tracker = pel_psmt_files.psmt
             }
 
         })
-    </script>
-
-
-    <script type="text/javascript">
-        <!--
-        var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {validateOn: ["change"]});
-        //-->
     </script>
     </body>
     </html>
