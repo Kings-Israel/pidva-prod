@@ -302,7 +302,7 @@ $totalRows_getstudent = mysqli_num_rows($getstudent);
                                                       <td><?php echo $row_getstudent['client_name']; ?></td>
                                                       
                                                       <td><?php echo $row_getstudent['request_plan']; ?></td>
-                                         <td><?php echo $row_getstudent['request_date']; ?></td>
+                                         <td><?php date('Y m d H:i', strtotime($row_getstudent['request_date'] . ' + 2 hours')); ?></td>
                                                      
                                                       <td class="hidden-480">  <?php 
 														
