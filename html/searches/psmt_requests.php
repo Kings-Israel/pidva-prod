@@ -325,7 +325,7 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 														<td><?php echo $row_getallsearches['bg_dataset_name']; ?></td>
 														<td><?php echo "0%"; ?></td>
 														<td><?php echo $row_getallsearches['request_ref_number']; ?></td>
-														<td><?php echo date('Y m d H:i', strtotime($row_getallsearches['request_date'] . ' + 2 hours')); ?></td>
+														<td><?php echo date('Y m d H:i', strtotime($row_getallsearches['request_date'])); ?></td>
 														<td class="hidden-480">
 															<?php
 																if ($row_getallsearches['verification_status'] == '44') {
