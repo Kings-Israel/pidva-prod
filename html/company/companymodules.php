@@ -231,29 +231,34 @@ if (isset($_SERVER['QUERY_STRING'])) {
                                                                     <td><?php echo date('Y m d H:i', strtotime($row_getstudent['request_date'])); ?></td>
                                                                     <td class="hidden-480"> 
                                                                         <?php 
-                                                                            if($row_getstudent['verification_status']=='44'){
+                                                                            if($row_getstudent['status']=='44'){
                                                                                 ?>
                                                                                     <span class="label label-sm label-warning">In Progress</span>	
                                                                                 <?php
                                                                             }
-                                                                            if($row_getstudent['verification_status']=='00') {
+                                                                            if($row_getstudent['status']=='00') {
                                                                                 ?>
                                                                                     <span class="label label-sm label-purple">New Request</span>	
                                                                                 <?php
                                                                             }	
-                                                                            if($row_getstudent['verification_status']=='11') {
+                                                                            if($row_getstudent['status']=='11') {
                                                                                 ?>
                                                                                     <span class="label label-sm label-success">Final</span>	
                                                                                 <?php
                                                                             }
-                                                                            if($row_getstudent['verification_status']=='22') {
+                                                                            if($row_getstudent['status']=='22') {
                                                                                 ?>
                                                                                     <span class="label label-sm label-warning">UnReviewed</span>	
                                                                                 <?php
                                                                             }	
-                                                                                if($row_getstudent['verification_status']=='33') {
+                                                                            if($row_getstudent['status']=='33') {
                                                                                 ?>
                                                                                     <span class="label label-sm label-primary">Interim Data</span>	
+                                                                                <?php
+                                                                            }
+                                                                            if ($row_getstudent['status'] == '55') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-danger">Invalidated</span>
                                                                                 <?php
                                                                             }
                                                                         ?>    

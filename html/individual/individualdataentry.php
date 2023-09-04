@@ -516,6 +516,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                                         <span class="label label-sm label-primary">Interim Data</span>
                                                     <?php
                                                 }
+                                                if ($row_getstudent['verification_status'] == '55') { 
+                                                    ?>
+                                                        <span class="label label-sm label-danger">Invalid</span>
+                                                    <?php
+                                                }
                                                 ?>
                                             </td>
                                         </tr>
