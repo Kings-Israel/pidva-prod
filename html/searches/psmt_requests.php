@@ -328,29 +328,34 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 														<td><?php echo date('Y m d H:i', strtotime($row_getallsearches['request_date'])); ?></td>
 														<td class="hidden-480">
 															<?php
-																if ($row_getallsearches['verification_status'] == '44') {
+																if ($row_getallsearches['status'] == '44') {
 																	?>
 																		<span class="label label-sm label-warning">In Progress</span>
 																	<?php
 																}
-																if ($row_getallsearches['verification_status'] == '00') {
+																if ($row_getallsearches['status'] == '00') {
 																	?>
 																		<span class="label label-sm label-purple">New Request</span>
 																	<?php
 																}
-																if ($row_getallsearches['verification_status'] == '11') {
+																if ($row_getallsearches['status'] == '11') {
 																	?>
 																		<span class="label label-sm label-success">Final</span>
 																	<?php
 																}
-																if ($row_getallsearches['verification_status'] == '33') {
+																if ($row_getallsearches['status'] == '33') {
 																	?>
 																		<span class="label label-sm label-success">Interim</span>
 																	<?php
 																}
-																if ($row_getallsearches['verification_status'] == '22') {
+																if ($row_getallsearches['status'] == '22') {
 																	?>
 																		<span class="label label-sm label-danger">Rejected</span>
+																	<?php
+																}
+																if ($row_getallsearches['status'] == '55') {
+																	?>
+																		<span class="label label-sm label-danger">Invalidated</span>
 																	<?php
 																}
 															?>
