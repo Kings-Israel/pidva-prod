@@ -418,7 +418,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                         }
                                     }
                                 } else {
-                                    if ($row_getstudent['status'] == '00') {
+                                    if ($row_getstudent['verification_status'] == '00') {
                                         $deleteSQL2 = sprintf(
                                             "UPDATE pel_psmt_request SET status='44', verification_status='44' WHERE request_ref_number=%s",
                                             GetSQLValueString($refnumber2, 'text')

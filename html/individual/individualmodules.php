@@ -1,34 +1,33 @@
 <?php require_once('../../Connections/connect.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+	function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+	{
+		$theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
 
-  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($connect,$theValue) : mysqli_escape_string($connect,$theValue);
+		$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($connect, $theValue) : mysqli_escape_string($connect, $theValue);
 
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
+		switch ($theType) {
+			case "text":
+				$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+				break;    
+			case "long":
+			case "int":
+				$theValue = ($theValue != "") ? intval($theValue) : "NULL";
+				break;
+			case "double":
+				$theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+				break;
+			case "date":
+				$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+				break;
+			case "defined":
+				$theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+				break;
+		}
+		return $theValue;
+	}
 }
-}
-
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -45,7 +44,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		<meta name="description" content="Static &amp; Dynamic Tables" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-	<!-- bootstrap & fontawesome -->
+		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../assets/css/bootstrap.css" />
 		<link rel="stylesheet" href="../../assets/css/font-awesome.css" />
 
@@ -83,7 +82,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		<script src="../assets/js/html5shiv.js"></script>
 		<script src="../assets/js/respond.js"></script>
 		<![endif]-->
-    </head>
+	</head>
 
 	<body class="no-skin">
 		<!-- #section:basics/navbar.layout -->
@@ -91,7 +90,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
-<?php include('../header2.php');?>
+			<?php include('../header2.php');?>
 		</div>
 
 		<!-- /section:basics/navbar.layout -->
@@ -101,22 +100,19 @@ if (isset($_SERVER['QUERY_STRING'])) {
 			</script>
 
 			<!-- #section:basics/sidebar -->
-			<div id="sidebar" class="sidebar                  responsive">
+			<div id="sidebar" class="sidebar responsive">
 			  <script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
-              <?php include('../sidebarmenu2.php');?>
-                
-                
-	<!-- #section:basics/sidebar.layout.minimize -->
+				<?php include('../sidebarmenu2.php');?> 
+				<!-- #section:basics/sidebar.layout.minimize -->
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>				</div>
-
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
 				<!-- /section:basics/sidebar.layout.minimize -->
 			  <script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 				</script>
-				
 		  </div>
 
 			<!-- /section:basics/sidebar -->
@@ -131,24 +127,22 @@ if (isset($_SERVER['QUERY_STRING'])) {
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>							</li>
+								<a href="#">Home</a>
+							</li>
 
 							<li>
-								<a href="#">Peleza Modules</a>							</li>
+								<a href="#">Peleza Modules</a>
+							</li>
                                 
-                                			<li>
-								<a href="#">Individual</a>							</li>
+							<li>
+								<a href="#">Individual</a>
+							</li>
                               
 							<li class="active">Data Entry Management</li>
 						</ul><!-- /.breadcrumb -->
 
 						<!-- #section:basics/content.searchbox -->
 						<div class="nav-search" id="nav-search">
-							<!-- <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>								</span>
-							</form> -->
 						</div><!-- /.nav-search -->
 
 						<!-- /section:basics/content.searchbox -->
@@ -156,224 +150,148 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 					<!-- /section:basics/content.breadcrumbs -->
 					<div class="page-content">
-				
-
-<div class="row">
+						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<!--		
-								<div class="hr hr-18 dotted hr-double"></div>
-
-						<h4 class="pink">
-									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-									<a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>								</h4>
-
-								<div class="hr hr-18 dotted hr-double"></div>
--->
-<div class="row">
+								<div class="row">
 									<div class="col-xs-12">
-
-                                    
 									  <h3 align="left" class="header smaller lighter blue">To Edit and Enter Individual Registration Data, Enter Request Ref Number (Request Ref Number/Individual Name/Individual Identity)</h3>
-                                      </div>
-                                         <!--   <div  class="col-xs-6">
-                                        <h3 align="right" class="header smaller lighter blue">
-									<i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-									<a href="educationupload.php">	
-                                  <button class="btn btn-white btn-info btn-bold">
-												<i class="ace-icon bigger-120 green"></i>New Education Data
-</button></a>
-                                                
-                                                  
-                   							  </h3>
-                           
-
-
-
-</div>-->
-<form class="form-horizontal"  name="forminst" action="<?php echo $editFormAction; ?>" method="POST" >
-
-<div class="form-group">
-										<label class="col-sm-5 control-label no-padding-right" for="form-field-1">Request Ref/Individual Request Names/Individual Identity:</label>
-
-										<div class="col-sm-5"><span id="sprytextfield1">
-																						     
-										  <input type="text" id="search_ref" name="search_ref" class="col-xs-10 col-sm-8" /> <span class="textfieldRequiredMsg">*</span></span>
-										</div>
-                                     </div>
-									<!-- /section:elements.form -->
-								
-<div class="space-4"></div>
-									<div class="clearfix form-actions">
-										<div class="col-md-offset-3 col-md-9">
-						
-                                   <button onClick="submit" type="submit" value="submit" class="btn btn-info">
-												<i class="ace-icon fa fa-check bigger-110"></i>
-												Submit											</button>
-
-											     
-											<button class="btn" type="reset">
-												<i class="ace-icon fa fa-undo bigger-110"></i>
-												Reset											</button>
-										</div>
-									</div>   
-
-   <input type="hidden" name="MM_insert" value="forminst">
-
-</form>
-
- <?php
-	 
-			  
-					        if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "forminst")) {
-						
-mysqli_select_db($connect,$database_connect);
- 
-$search_ref =strtoupper($_POST['search_ref']);
-
-$queryitem = "";
-$str = addslashes($search_ref);
-$words = explode(" ", $str);
-$spaces=array();
-$others=array();
-foreach($words as $word)
-{
-if($word==' ' || $word=='')
-{
-}
-else
-{
-$queryitem .= " AND (bg_dataset_name LIKE '%".$word."%' OR request_ref_number  LIKE  '%".$word."%' )";
-}
-}
-
-//$query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77') and verification_status IN ('44','22','33','11') AND request_type='INDIVIDUAL' AND request_id >=1 ".$queryitem."";
-
-$query_getstudent = "SELECT * FROM pel_psmt_request WHERE request_id >=1 ".$queryitem."";
-$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
-$row_getstudent = mysqli_fetch_assoc($getstudent);
-$totalRows_getstudent = mysqli_num_rows($getstudent);	
-?>
-
-<h3 align="left" class=" smaller lighter blue"><strong>SEARCH REF: </strong>      <?php echo $search_ref;?></h3>
-<div class="clearfix">
-											<div class="pull-right tableTools-container"></div>
-									  </div>
-										<div class="table-header">
-									  Results for "Request for Individual Details Searched"										</div>
-
-										<!-- div.table-responsive -->
-
-										<!-- div.dataTables_borderWrap -->
-										<div>
-											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th class="center">
-															<!--<label class="pos-rel">
-																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>															</label>-->				NO:									
-                                                                
-                                                   	  </th>
-													  <th>Dataset Name</th>
-														<th>Client Name</th>
-                                                      
-                                                        <th>Request Package</th>
-                                                         <th>Request Date</th>
-                                                
-                                                        <th class="hidden-480">Status</th>
-										  <th>Action</th>
-													</tr>
-												</thead>
-
-												<tbody>
-                                                  <?php
-												  
-												  $x=1;												  
-												  do { ?>
-                                                  <tr>
-                                                     	<td class="center">
-														 <!--	<label class="pos-rel">
-																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>	-->	<?php echo $x++; ?>													</label>														</td>
-                                                      
-                                                      <td>
-                                                   <a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a>																								</td>
-                                                      <td><?php echo $row_getstudent['client_name']; ?></td>
-                                                      
-                                                      <td><?php echo $row_getstudent['request_plan']; ?></td>
-                                         <td><?php date('Y m d H:i', strtotime($row_getstudent['request_date'])); ?></td>
-                                                     
-                                                      <td class="hidden-480">  <?php 
-														
-														if($row_getstudent['verification_status']=='44')
-														{
-														?>
-                                                        
-                                                        <span class="label label-sm label-warning">In Progress</span>	
-                                                        <?php
-														}
-													    if($row_getstudent['verification_status']=='00')
-														{
-														?>
-                                                        <span class="label label-sm label-purple">New Request</span>	
-                                                         <?php
-														}	
-													if($row_getstudent['verification_status']=='11')
-														{
-														?>
-                                                        <span class="label label-sm label-success">Final</span>	
-                                                         <?php
-														}	
-													if($row_getstudent['verification_status']=='22')
-														{
-														?>
-                                                        <span class="label label-sm label-warning">UnReviewed</span>	
-                                                         <?php
-														}	
-															if($row_getstudent['verification_status']=='33')
-														{
-														?>
-                                                        <span class="label label-sm label-primary">Interim Data</span>	
-                                                         <?php
-														}	
-														
-														?>    </td>
-                                        
-											
-                                         <td>
-                                                         <?php
-
-if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata)) 
-{
-
-?>                               
-                            <a href="individualdataentry.php?request_id=<?php echo $row_getstudent['request_id']; ?>" class="orange"><button class="btn btn-xs btn-info">  
-															<i class="ace-icon fa fa-pencil bigger-120"></i>															</button>  </a>  
-<?php
-}
-?>                                                                                                
-                                                                 </td>
-                                                  </tr>
-                                                    <?php } while ($row_getstudent= mysqli_fetch_assoc($getstudent)); ?>
-
-													
-											  </tbody>
-											</table>
-										</div>  <?php
-	 }
-	 ?>                           
-           
 									</div>
-				
-                              	
-                        
-                                
+									<form class="form-horizontal"  name="forminst" action="<?php echo $editFormAction; ?>" method="POST" >
+										<div class="form-group">
+											<label class="col-sm-5 control-label no-padding-right" for="form-field-1">Request Ref/Individual Request Names/Individual Identity:</label>
+											<div class="col-sm-5"><span id="sprytextfield1">
+												<input type="text" id="search_ref" name="search_ref" class="col-xs-10 col-sm-8" /> <span class="textfieldRequiredMsg">*</span></span>
+											</div>
+										</div>
+										<!-- /section:elements.form -->
+										<div class="space-4"></div>
+										<div class="clearfix form-actions">
+											<div class="col-md-offset-3 col-md-9">
+												<button onClick="submit" type="submit" value="submit" class="btn btn-info">
+													<i class="ace-icon fa fa-check bigger-110"></i>
+													Submit
+												</button>
+												<button class="btn" type="reset">
+													<i class="ace-icon fa fa-undo bigger-110"></i>
+													Reset
+												</button>
+											</div>
+										</div>
+										<input type="hidden" name="MM_insert" value="forminst">
+									</form>
+ 									<?php
+					        	if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "forminst")) {
+											mysqli_select_db($connect,$database_connect);
+											
+											$search_ref =strtoupper($_POST['search_ref']);
+
+											$queryitem = "";
+											$str = addslashes($search_ref);
+											$words = explode(" ", $str);
+											$spaces=array();
+											$others=array();
+											foreach($words as $word) {
+												if($word==' ' || $word=='') {}
+												else {
+													$queryitem .= " AND (bg_dataset_name LIKE '%".$word."%' OR request_ref_number  LIKE  '%".$word."%' )";
+												}
+											}
+											$query_getstudent = "SELECT * FROM pel_psmt_request WHERE request_id >=1 ".$queryitem."";
+											$getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
+											$row_getstudent = mysqli_fetch_assoc($getstudent);
+											$totalRows_getstudent = mysqli_num_rows($getstudent);	
+											?>
+												<h3 align="left" class=" smaller lighter blue"><strong>SEARCH REF: </strong><?php echo $search_ref;?></h3>
+												<div class="clearfix">
+													<div class="pull-right tableTools-container"></div>
+												</div>
+												<div class="table-header">
+													Results for "Request for Individual Details Searched"
+												</div>
+												<div>
+													<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+														<thead>
+															<tr>
+																<th class="center">NO:</th>
+																<th>Dataset Name</th>
+																<th>Client Name</th>
+																<th>Request Package</th>
+																<th>Request Date</th>
+																<th class="hidden-480">Status</th>
+																<th>Action</th>
+															</tr>
+														</thead>
+
+														<tbody>
+															<?php
+																$x=1;												  
+																do {
+																	?>
+																		<tr>
+																			<td class="center"><?php echo $x++; ?></td>
+																			<td>
+																				<a href="#"><?php echo $row_getstudent['bg_dataset_name']; ?></a>
+																			</td>
+																			<td><?php echo $row_getstudent['client_name']; ?></td>
+																			<td><?php echo $row_getstudent['request_plan']; ?></td>
+																			<td><?php echo date('Y m d H:i', strtotime($row_getstudent['request_date'])); ?></td>
+																			<td class="hidden-480"> 
+																				<?php 
+																					if($row_getstudent['verification_status']=='44'){
+																						?>
+																							<span class="label label-sm label-warning">In Progress</span>	
+																						<?php
+																					}
+																					if($row_getstudent['verification_status']=='00') {
+																						?>
+																							<span class="label label-sm label-purple">New Request</span>	
+																								<?php
+																					}	
+																					if($row_getstudent['verification_status']=='11') {
+																						?>
+																							<span class="label label-sm label-success">Final</span>	
+																						<?php
+																					}
+																					if($row_getstudent['verification_status']=='22') {
+																						?>
+																							<span class="label label-sm label-warning">UnReviewed</span>	
+																						<?php
+																					}	
+																						if($row_getstudent['verification_status']=='33') {
+																						?>
+																							<span class="label label-sm label-primary">Interim Data</span>	
+																						<?php
+																					}
+																				?>    
+																			</td>
+																			<td>
+																				<?php
+																					if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata)) {
+																						?>                               
+																						<a href="individualdataentry.php?request_id=<?php echo $row_getstudent['request_id']; ?>" class="orange"><button class="btn btn-xs btn-info">  
+																							<i class="ace-icon fa fa-pencil bigger-120"></i></button>
+																						</a>  
+																						<?php
+																					}
+																				?>                                                                                             
+																			</td>
+																		</tr>
+																	<?php
+																} while ($row_getstudent= mysqli_fetch_assoc($getstudent));
+															?>
+														</tbody>
+													</table>
+												</div>
+											<?php
+										}
+									?>                           
+								</div>
 							</div><!-- /.col -->
 					  </div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div>
-</div><!-- /.main-content -->
+			</div><!-- /.main-content -->
 
 			<div class="footer">
 				<div class="footer-inner">
@@ -381,30 +299,24 @@ if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata))
 					<div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">Peleza</span>
-							Admin &copy; 2018						</span>
-
-&nbsp;&nbsp;											</div>
-
+							Admin &copy; 2018
+						</span>
+							&nbsp;&nbsp;
+						</div>
 					<!-- /section:basics/footer -->
 				</div>
 			</div>
+		</div>
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a>		</div><!-- /.main-container -->
-	<!-- basic scripts -->
+		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a>		</div><!-- /.main-container -->
+		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../../assets/js/jquery.js'>"+"<"+"/script>");
 		</script>
 
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='../../assets/js/jquery1x.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='../../assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 		</script>
@@ -412,7 +324,7 @@ if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata))
 
 		<!-- page specific plugin scripts -->
         
-        <!-- page specific plugin scripts -->
+		<!-- page specific plugin scripts -->
 		<script src="../../assets/js/dataTables/jquery.dataTables.js"></script>
 		<script src="../../assets/js/dataTables/jquery.dataTables.bootstrap.js"></script>
 		<script src="../../assets/js/dataTables/extensions/TableTools/js/dataTables.tableTools.js"></script>
@@ -474,22 +386,7 @@ if (in_array('NOTIFY_CLIENT_SEARCH_REQUESTS', $roledata))
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-			
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-			
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-			
-					//"iDisplayLength": 50
 			    } );
-				//oTable1.fnAdjustColumnSizing();
-			
-			
 				//TableTools settings
 				TableTools.classes.container = "btn-group btn-overlap";
 				TableTools.classes.print = {
