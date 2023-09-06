@@ -530,7 +530,7 @@ if (isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'newdetails') {
                                                                         <?php $invalidurl = show($row_getprogress2['module_id'])
                                                                             ? sprintf(
                                                                                 '%s/%s/module/%s/',
-                                                                                'https://KYC.pidva.africa/api/request',
+                                                                                'https://kyc.pidva.africa/peleza-backend-server/api/request',
                                                                                 // 'http://127.0.0.1:8000/peleza-backend-server/api/request',
                                                                                 $row_getstudent['request_id'],
                                                                                 $row_getprogress2['module_id']
