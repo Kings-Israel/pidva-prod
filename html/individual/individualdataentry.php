@@ -521,6 +521,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                                         <span class="label label-sm label-danger">Invalid</span>
                                                     <?php
                                                 }
+                                                if ($row_getstudent['verification_status'] == '66') { 
+                                                    ?>
+                                                        <span class="label label-sm label-warning">Manual</span>
+                                                    <?php
+                                                }
                                                 ?>
                                             </td>
                                         </tr>
@@ -533,7 +538,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                             <th>Last Date Update</th>
                                             <th>Report Adverse Status</th>
                                             <th>Set Adverse Status</th>
-
                                         </tr>
                                         </thead>
 
@@ -566,7 +570,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                                             class="form-control inputcountry chosen"
                                                             onchange="this.form.submit()" required>
                                                         <option value="">Select Adverse Status</option>
-
                                                         <option value="ADVERSE MENTION">ADVERSE MENTION</option>
                                                         <option value="NO ADVERSE MENTION">NO ADVERSE MENTION</option>
                                                     </select>
@@ -599,19 +602,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
 
                                                     } else {
                                                         $updateGoTo = "individualdataentry.php?request_id=$colname_getrequestid";
-
                                                         ?>
-                                                        <meta http-equiv="Refresh"
-                                                              content="0; url=<?php echo $updateGoTo; ?>">
-
+                                                            <meta http-equiv="Refresh" content="0; url=<?php echo $updateGoTo; ?>">
                                                         <?php
                                                     }
-
                                                 }
-
                                                 ?>
                                             </td>
-
                                         </tr>
                                         </tbody>
                                     </table>
@@ -620,15 +617,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                         <thead>
                                         <tr>
                                             <th>BG SCREENING MODULES</th>
-
                                             <th>Files Uploaded</th>
                                             <th>Data Provisions</th>
-
                                         </thead>
-
                                         <tbody>
                                         <tr>
-
                                             <td width="50%">
                                                 <table id="simple-table"class="table  table-bordered table-hover">
                                                     <?php
@@ -685,7 +678,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                                                         <span class="label label-sm label-primary">Interim Data</span>
                                                                         <?php
                                                                     }
-                                                                    ?>    </td>
+                                                                    if ($row_getprogress2['status'] == '66') {
+                                                                        ?>
+                                                                        <span class="label label-sm label-manual">Manual</span>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                    </td>
                                                                 <?php $pagename = $row_getprogress2['module_name'] == "EDUCATION VERIFICATION" ? "educationcheck" : $row_getprogress2['module_role']; ?>
 
                                                                 <td>
@@ -697,6 +696,20 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "newdetails")) {
                                                                     </a>
                                                                 </td>
 
+                                                                <?php
+                                                                    if ($row_getstudent['verification_status'] !== '66') {
+                                                                        ?>
+                                                                            <td>
+                                                                                    <form action="" method="post">
+                                                                                        <input type="hidden" name="status_manual" value="manual">
+                                                                                        <input type="hidden" name="status" value="66">
+                                                                                        <input type="hidden" name="request_id" value="<?php echo $row_getstudent['request_id'] ?>">
+                                                                                        <button type="submit" class="btn btn-warning btn-xs">Set to Manual</button>
+                                                                                    </form>
+                                                                            </td>
+                                                                        <?php
+                                                                    }
+                                                                ?>
                                                             </tr>
 
                                                             <?php

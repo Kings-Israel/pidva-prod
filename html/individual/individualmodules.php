@@ -268,6 +268,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 																							<span class="label label-sm label-danger">Invalid</span>
 																						<?php
 																					}
+																					if ($row_getstudent['status'] == '66') {
+																						?>
+																							<span class="label label-sm label-warning">Manual</span>
+																						<?php
+																					}
 																				?>    
 																			</td>
 																			<td>

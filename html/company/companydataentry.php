@@ -416,6 +416,10 @@ if (isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'newdetails') {
                                                         <span class="label label-sm label-danger">Invalid</span>
                                                     <?php
                                                     }
+                                                    if ($row_getstudent['verification_status'] == '66') { ?>
+                                                        <span class="label label-sm label-warning">Manual</span>
+                                                    <?php
+                                                    }
                                                     ?>
                                                 </td>
                                             </tr>
@@ -506,6 +510,8 @@ if (isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'newdetails') {
                                                                             echo '<span class="label label-sm label-warning">Not Reviewed</span>';
                                                                         } elseif ($row_getprogress2['status'] == '33') {
                                                                             echo '<span class="label label-sm label-primary">Interim Data</span>';
+                                                                        } elseif ($row_getprogress2['status'] == '66') {
+                                                                            echo '<span class="label label-sm label-warning">Manual</span>';
                                                                         } ?>
                                                                     </td>
                                                                     <td>
@@ -543,6 +549,20 @@ if (isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'newdetails') {
                                                                             </button>
                                                                         </a>
                                                                     </td>
+                                                                    <?php
+                                                                        if ($row_getstudent['verification_status'] !== '66') {
+                                                                        ?>
+                                                                            <td>
+                                                                                <form action="" method="post">
+                                                                                    <input type="hidden" name="status_manual" value="manual">
+                                                                                    <input type="hidden" name="status" value="66">
+                                                                                    <input type="hidden" name="request_id" value="<?php echo $row_getstudent['request_id'] ?>">
+                                                                                    <button type="submit" class="btn btn-warning btn-xs">Set to Manual</button>
+                                                                                </form>
+                                                                            </td>
+                                                                        <?php
+                                                                        }
+                                                                    ?>
                                                                 </tr>
                                                         <?php } while (
                                                                 $row_getprogress2 = mysqli_fetch_assoc($getprogress2)

@@ -168,7 +168,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 mysqli_select_db($connect, $database_connect);
 
-$query_getallsearches = "SELECT * FROM pel_psmt_request WHERE verification_status IN ('44','33','11','00','22') ORDER BY request_date DESC LIMIT 500";
+$query_getallsearches = "SELECT * FROM pel_psmt_request ORDER BY request_date DESC LIMIT 500";
 $getallsearches = mysqli_query_ported($query_getallsearches, $connect) or die(mysqli_error($connect));
 $row_getallsearches = mysqli_fetch_assoc($getallsearches);
 $totalRows_getallsearches = mysqli_num_rows($getallsearches);
@@ -356,6 +356,11 @@ $totalRows_getallsearches = mysqli_num_rows($getallsearches);
 																if ($row_getallsearches['status'] == '55') {
 																	?>
 																		<span class="label label-sm label-danger">Invalidated</span>
+																	<?php
+																}
+																if ($row_getallsearches['status'] == '66') {
+																	?>
+																		<span class="label label-sm label-warning">Manual</span>
 																	<?php
 																}
 															?>

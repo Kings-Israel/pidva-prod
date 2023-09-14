@@ -191,7 +191,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
                                                 $queryitem .= " AND (bg_dataset_name LIKE '%" . $word . "%' OR request_ref_number  LIKE  '%" . $word . "%' )";
                                             }
                                         }
-                                        $query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77','00') AND verification_status IN ('44','22','33','00') AND  request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
+                                        // $query_getstudent = "SELECT * FROM pel_psmt_request WHERE status IN ('33','44','77','00') AND verification_status IN ('44','22','33','00') AND  request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
+                                        $query_getstudent = "SELECT * FROM pel_psmt_request WHERE request_type LIKE '%COMPANY%' AND request_id >=1 " . $queryitem . "";
                                         $getstudent = mysqli_query_ported($query_getstudent, $connect) or die(mysqli_error($connect));
                                         $row_getstudent = mysqli_fetch_assoc($getstudent);
                                         $totalRows_getstudent = mysqli_num_rows($getstudent);
@@ -259,6 +260,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
                                                                             if ($row_getstudent['status'] == '55') {
                                                                                 ?>
                                                                                     <span class="label label-sm label-danger">Invalidated</span>
+                                                                                <?php
+                                                                            }
+                                                                            if ($row_getstudent['status'] == '66') {
+                                                                                ?>
+                                                                                    <span class="label label-sm label-danger">Manual</span>
                                                                                 <?php
                                                                             }
                                                                         ?>    
