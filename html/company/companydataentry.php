@@ -157,6 +157,18 @@ if (isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'newdetails') {
         header(sprintf('Location: %s', $updateGoTo));
     }
 }
+
+if (isset($_POST['status_manual'])) {
+    $request_id = GetSQLValueString($_POST['request_id'], 'text');
+    $updateSQL = sprintf(
+        'UPDATE pel_psmt_request SET verification_status = %s, status = %s WHERE request_id = %s', 
+        GetSQLValueString($_POST['status'], 'text'), 
+        GetSQLValueString($_POST['status'], 'text'), 
+        $request_id
+    );
+    mysqli_select_db($connect, $database_connect);
+    mysqli_query_ported($updateSQL, $connect);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
